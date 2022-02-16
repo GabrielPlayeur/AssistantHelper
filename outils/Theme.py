@@ -23,7 +23,7 @@ class Theme(ABC):
         """
         for mot in args:
             self._motsConnecteur.append(mot)
-            
+
     def getReconnaisseur(self):
         """
             Entree:
@@ -31,7 +31,7 @@ class Theme(ABC):
             Fonction: retourne les mots reconnaisseur du theme
         """
         return self._motsReconnaisseur
-    
+
     def getConnecteur(self):
         """
             Entree: 

@@ -4,18 +4,7 @@ from gestion import rechercheTheme
 class GestionTheme:
     def __init__(self):
 
-        self.meteo = Meteo.Meteo()
-
-        self.theme = {"meteo": self.meteo,
-                      "meteo2": Meteo.Meteo()}
-
-        #------------------temp----------------------------
-        self.meteo.ajouterReconnaisseur("temperature")
-        self.meteo.ajouterConnecteur("de")
-        self.meteo.nom="La vraie meteo"
-
-        self.theme["meteo2"].ajouterConnecteur(":")
-        #--------------------------------------------------
+        self.theme = {"meteo": Meteo.Meteo()}
 
     def verifierTheme(self, texte: str):
         """
