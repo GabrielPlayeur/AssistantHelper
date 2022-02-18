@@ -8,5 +8,5 @@ def docstring():
         """
 
 theme = GestionTheme()
-phrase = "Qu'elle est la meteo a Paris ?"
+phrase = "Qu'elle est la temperature de Nantes ?"
 print(theme.verifierTheme(phrase))
