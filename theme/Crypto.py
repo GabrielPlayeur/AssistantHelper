@@ -6,23 +6,34 @@ class Crypto(Theme.Theme):
         super().__init__("crypto", 1)
 
         super().ajouterReconnaisseur("cour","valeur")
-        super().ajouterConnecteur("de","du","l")
+        super().ajouterConnecteur("de","du")
 
-        self.api = TraductionApi()
+        self.api = CryptoApi()
 
     def action(self):
         self.api.envoyerRequest(self.getElement()[0])
         self.resetElement()
 
-class TraductionApi(Api.Api):
+class CryptoApi(Api.Api):
     def __init__(self):
         super().__init__()
         
-        self.URL = "https://api.blockchain.com/v3/exchange"
+        self.setUrl("https://api.blockchain.com/v3/exchange")
+        
+        self.derniereInfoCrypto = {}
 
     def parametre(self, nomCrypto):
         return f"/l3/{nomCrypto}-USD"
 
     def envoyerRequest(self, nomCrypto):
         reponse = super().getRequest(nomCrypto)
-        print(reponse.json()['bids'][0])
+        if super().checkRequestStatus(reponse):
+            self.addDerniereInfoCrypto(reponse.json())
+            self.afficherDerniereInfoCrypto(reponse.json()['symbol'])
+            
+    def addDerniereInfoCrypto(self, reponse):
+            self.derniereInfoCrypto[reponse['symbol']] = reponse['bids'][0]
+        
+    def afficherDerniereInfoCrypto(self, symbole):
+        print(self.derniereInfoCrypto.get(symbole))
+        

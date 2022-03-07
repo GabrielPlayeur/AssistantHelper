@@ -18,8 +18,8 @@ class MeteoApi(Api.Api):
     def __init__(self):
         super().__init__()
 
-        self._API_KEY = "513cf5bef2bd3c00f2b188521ba509d9"
-        self.URL = "https://api.openweathermap.org/data/2.5/weather?"
+        self.setApiKey("513cf5bef2bd3c00f2b188521ba509d9")
+        self.setUrl("https://api.openweathermap.org/data/2.5/weather?")
 
         self.derniereVille = {}
 

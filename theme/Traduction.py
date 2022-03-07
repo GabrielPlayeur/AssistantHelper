@@ -19,4 +19,4 @@ class TraductionApi(Api.Api):
         super().__init__()
 
     def envoyerRequest(self):
-        print("wait")
+        print("Work in progress !")
