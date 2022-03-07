@@ -3,7 +3,7 @@ class MissingElement(Exception):
     def __init__(self, element, nombreElementDemande):
         self.element = element
         self.nombreElementDemande = nombreElementDemande
-        self.message = f"Le nombre d'element donné est insufisant, il en faut {self.nombreElementDemande}.Element donné: {self.element}."
+        self.message = f"Le nombre d'element donné est insufisant, il en faut {self.nombreElementDemande}. Element donné: {self.element}."
         super().__init__(self.message)
 
 class ToManyElement(Exception):

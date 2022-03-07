@@ -1,4 +1,4 @@
-   -> https://www.deepl.com/fr/docs-api/
+NOT WORKING   -> https://www.deepl.com/fr/docs-api/
 OK -> https://openweathermap.org/city/3034111
 OK -> https://www.geeksforgeeks.org/get-time-zone-of-a-given-location-using-python/
    -> https://newsapi.org/

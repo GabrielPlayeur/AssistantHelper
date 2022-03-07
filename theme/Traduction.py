@@ -3,7 +3,7 @@ from erreur import erreur
 
 class Traduction(Theme.Theme):
     def __init__(self):
-        super().__init__("traduction", 3)
+        super().__init__("traduction", 2)
 
         super().ajouterReconnaisseur("traduit","traduction")
         super().ajouterConnecteur("de","en",":")
