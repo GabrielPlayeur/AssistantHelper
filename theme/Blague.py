@@ -6,7 +6,7 @@ class Blague(Theme.Theme):
         super().__init__("blague", 1)
 
         super().ajouterReconnaisseur("blague")
-        super().ajouterConnecteur("une", "meilleur")
+        super().ajouterConnecteur("blague")
 
         self.api = BlagueApi()
 

@@ -30,6 +30,8 @@ class CryptoApi(Api.Api):
         if super().checkRequestStatus(reponse):
             self.addDerniereInfoCrypto(reponse.json())
             self.afficherDerniereInfoCrypto(reponse.json()['symbol'])
+        elif reponse.status_code == 400:
+            self.afficherDerniereInfoCrypto("")
             
     def addDerniereInfoCrypto(self, reponse):
             self.derniereInfoCrypto[reponse['symbol']] = reponse['bids'][0]

@@ -58,7 +58,7 @@ class RechercheTheme:
                             if i != "'" and i in texte:
                                 texte = texte.split(i)[0]                                
                     #Supprimer les espaces inutile
-                    if texte[-1] == " " or texte[0] == " ":
+                    if (len(texte)>0) and (texte[-1] == " " or texte[0] == " "):
                         texte = texte[:-1]
                     texteTheme.append(texte)
             self.dictElementThemePossible.append({"theme":theme,"element":texteTheme})
