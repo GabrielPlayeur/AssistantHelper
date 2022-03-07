@@ -1,16 +1,18 @@
 from outils import Theme, Api
+from erreur import erreur
 
 class Meteo(Theme.Theme):
     def __init__(self):
-        super().__init__("meteo")
+        super().__init__("meteo", 1)
 
         super().ajouterReconnaisseur("meteo","temperature","chaleur")
         super().ajouterConnecteur("a","de","en")
 
         self.api = MeteoApi()
 
-    def action(self, ville):
-        self.api.envoyerRequest(ville)
+    def action(self):
+        self.api.envoyerRequest(self.getElement()[0])
+        self.resetElement()
 
 class MeteoApi(Api.Api):
     def __init__(self):

@@ -1,4 +1,3 @@
-from cgitb import text
 from string import punctuation as ponctuation
 
 class RechercheTheme:
