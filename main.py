@@ -16,3 +16,11 @@ phrase = "Jouons papier"
 print(theme.verifierTheme(phrase))
 theme.themesTrouvesSetElement()
 theme.themesTrouvesAction()
+
+from temp import audio
+
+phrase = audio.getAudioListen()
+print(phrase)
+print(theme.verifierTheme(phrase))
+theme.themesTrouvesSetElement()
+theme.themesTrouvesAction()

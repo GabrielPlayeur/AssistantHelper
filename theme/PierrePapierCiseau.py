@@ -6,8 +6,8 @@ class PierrePapierCiseau(Theme.Theme):
     def __init__(self):
         super().__init__("pierrePapierCiseau", 1)
 
-        super().ajouterReconnaisseur("jeu","jouons")
-        super().ajouterConnecteur("jeu","jouons",":")
+        super().ajouterReconnaisseur("jeu","jouons", "joue")
+        super().ajouterConnecteur("jeu","jouons","joue",":")
 
         self.choixPierrePapierCiseau = ["pierre","papier","ciseau"]
 
