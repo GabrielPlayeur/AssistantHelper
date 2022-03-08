@@ -2,6 +2,7 @@ from theme import Meteo
 from theme import Traduction
 from theme import Crypto
 from theme import Blague
+from theme import PierrePapierCiseau
 
 from gestion import rechercheTheme
 from erreur import erreur
@@ -9,7 +10,11 @@ from erreur import erreur
 class GestionTheme:
     def __init__(self):
 
-        self.theme = {"meteo": Meteo.Meteo(),"traduction": Traduction.Traduction(),"crypto":Crypto.Crypto(), "blague":Blague.Blague()}
+        self.theme = {"meteo": Meteo.Meteo(),
+                      "traduction": Traduction.Traduction(),
+                      "crypto":Crypto.Crypto(),
+                      "blague":Blague.Blague(),
+                      "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
         self.themesTrouves = []
 

@@ -4,8 +4,8 @@ OK -> https://openweathermap.org/city/3034111
 OK -> https://www.geeksforgeeks.org/get-time-zone-of-a-given-location-using-python/
    -> https://newsapi.org/
 OK -> https://www.blockchain.com/api/exchange_rates_api
-   -> https://pypi.org/project/Wikipedia-API/
+OK -> https://www.larousse.fr/dictionnaires/francais/
 OK -> https://rapidapi.com/fr/LemmoTresto/api/joke3/
 OK -> l'heure dans different pays
-   -> Calculatrice
-   -> Pierre Papier Ciseau
+OK -> Calculatrice
+OK   -> Pierre Papier Ciseau

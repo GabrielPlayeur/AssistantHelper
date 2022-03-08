@@ -52,13 +52,19 @@ class RechercheTheme:
             #Determination des connecteurs du theme present dans le texte et ajout du mot suivant
             for connecteur in self.listeConnecteur:
                 if connecteur in theme.getConnecteur():
-                    texte = self.texte[self.texte.index(" "+connecteur+" ")+len(connecteur)+2:]
+                    connecteurRecherche = connecteur
+                    valeurDecalage = 1
+                    #Si il y a plusieur fois le connecteur
+                    if self.texte.count(connecteur) > 1:
+                        connecteurRecherche = " "+connecteurRecherche
+                        valeurDecalage = 2
+                    texte = self.texte[self.texte.lower().index(connecteurRecherche)+len(connecteur)+valeurDecalage:]
                     if connecteur != ":":
                         for i in ponctuation:
                             if i != "'" and i in texte:
                                 texte = texte.split(i)[0]                                
                     #Supprimer les espaces inutile
-                    if (len(texte)>0) and (texte[-1] == " " or texte[0] == " "):
+                    while len(texte)>0 and texte[-1] == " ":
                         texte = texte[:-1]
                     texteTheme.append(texte)
             self.dictElementThemePossible.append({"theme":theme,"element":texteTheme})
