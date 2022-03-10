@@ -2,6 +2,7 @@ from application.application import Application
 from gestion.gestionTheme import GestionTheme
 from audio.gestionCommandeVocal import GestionAudio
 from outils.pile import Pile
+from erreur import erreur
 
 from time import localtime, strftime
 from tkinter import END, INSERT
@@ -21,16 +22,31 @@ class GestionApplication:
             phrase = self.app.saisieDeTexte.get()
             date = strftime('%d/%m/%Y, %Hh %Mm %Ss', localtime())
 
-            print(self.theme.verifierTheme(phrase))
-            self.theme.themesTrouvesSetElement()
-            resultat = self.theme.themesTrouvesAction()
+            if len(self.theme.verifierTheme(phrase)) > 0:
 
+                try:
+                    self.theme.themesTrouvesSetElement()                    
+
+                    resultat = self.theme.themesTrouvesAction()
+                except erreur.ToManyElement as exception:
+                    resultat = exception
+
+                except erreur.MissingElement as exception:
+                    resultat = exception
+
+                except erreur.ToManyThemeFind as exception: #Changer pour demander un choix
+                    resultat = exception
+
+            else:
+                resultat = "Pas de theme trouver en rapport avec la demande"                
+                
             texte = f"{phrase}\nfut demandé le : {date}\n{resultat}"
+
             self.insertTexte(texte)
             self.app.pileEntree.empiler(texte)
             self.app.pileSortie=Pile()
 
-            self.app.saisieDeTexte.delete(0,END)            
+            self.app.saisieDeTexte.delete(0,END)
             self.app.texte.configure(state='disabled')
 
     def insertTexte(self, texte):

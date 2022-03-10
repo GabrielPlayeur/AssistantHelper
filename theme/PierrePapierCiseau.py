@@ -18,7 +18,7 @@ class PierrePapierCiseau(Theme.Theme):
         self.resetElement()
         
         if choixJoueur not in self.choixPierrePapierCiseau:                
-            self.affichage(f"Votre choix n'est pas bon {choixJoueur} n'existe pas. Victoire de l'Assistant avec {choixAssistant} par forfait.")
+            return f"Votre choix n'est pas bon {choixJoueur} n'existe pas. Victoire de l'Assistant avec {choixAssistant} par forfait."
         else:
             numeroVainqueur = self.trouverVainqueur(self.choixPierrePapierCiseau.index(choixJoueur),self.choixPierrePapierCiseau.index(choixAssistant))
             if numeroVainqueur == 2:

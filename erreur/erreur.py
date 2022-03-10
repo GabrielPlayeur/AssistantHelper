@@ -31,5 +31,8 @@ class ToManyThemeFind(Exception):
             Fonction: Exception leve lorsqu'il y a plusieur theme trouver pour pouvoir executer une action de theme
         """
         self.themesTrouves = themesTrouves
-        self.message = f"Le nombre de theme trouvé est trop grand. Themes trouvé: {self.themesTrouves}."
+        self.texte = ""
+        for i in self.themesTrouves:
+            self.texte += f"{i['theme'].nom}({i['element']})\n"
+        self.message = f"Le nombre de theme trouvé est trop grand. Themes trouvé: {self.texte}"
         super().__init__(self.message)
