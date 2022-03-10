@@ -1,5 +1,4 @@
-from gestion.gestionTheme import GestionTheme
-from audio.gestionCommandeVocal import GestionAudio
+from application.gestionApplication import GestionApplication
 
 def docstring():
         """
@@ -8,21 +7,11 @@ def docstring():
             Fonction:
         """
 
-theme = GestionTheme()
-audio = GestionAudio()
+app = GestionApplication()
+app.run()
 
 phrase = "Qu elle est la météo à Beaupreau ?"
 phrase = "Traduit moi en Anglais : salut les amis !"
-phrase = "Qu elle est le cour de BTC ?"
+phrase = "Qu elle est le cours de BTC ?"
 phrase = "Donne moi ta meilleure blague !"
 phrase = "Jouons papier"
-
-print(theme.verifierTheme(phrase))
-theme.themesTrouvesSetElement()
-theme.themesTrouvesAction()
-
-phrase = audio.ecouter()
-print(phrase)
-print(theme.verifierTheme(phrase))
-theme.themesTrouvesSetElement()
-theme.themesTrouvesAction()

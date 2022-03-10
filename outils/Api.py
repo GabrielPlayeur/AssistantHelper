@@ -82,3 +82,6 @@ class Api(ABC):
             return True
         else:
             return False  
+        
+    def pasResultat(self, texte="Le theme n'a pas fonctionne"):
+        return texte

@@ -14,18 +14,20 @@ class PierrePapierCiseau(Theme.Theme):
     def action(self):
         choixJoueur = self.getElement()[0].lower()
         choixAssistant = choice(self.choixPierrePapierCiseau)
+        
+        self.resetElement()
+        
         if choixJoueur not in self.choixPierrePapierCiseau:                
             self.affichage(f"Votre choix n'est pas bon {choixJoueur} n'existe pas. Victoire de l'Assistant avec {choixAssistant} par forfait.")
         else:
             numeroVainqueur = self.trouverVainqueur(self.choixPierrePapierCiseau.index(choixJoueur),self.choixPierrePapierCiseau.index(choixAssistant))
             if numeroVainqueur == 2:
-                self.affichage(f"Le vainqueur est l'Assistant avec {choixAssistant}.")
+                return f"Le vainqueur est l'Assistant avec {choixAssistant}."
             elif numeroVainqueur == 1:
-                self.affichage(f"Le vainqueur est le joueur avec {choixJoueur}.")
+                return f"Le vainqueur est le joueur avec {choixJoueur}."
             else:
-                self.affichage(f"Pas de vainqueur match nul avec {choixJoueur}.")
+                return f"Pas de vainqueur match nul avec {choixJoueur}."
 
-        self.resetElement()
 
     def trouverVainqueur(self, number1: int, number2: int):        
         """
@@ -38,6 +40,3 @@ class PierrePapierCiseau(Theme.Theme):
         if (number1 == 0 and number2 == 1) or (number1 == 1 and number2 == 2) or (number1 == 2 and number2 == 0):
             return 2
         return 1
-
-    def affichage(self, texte):
-        print(texte)

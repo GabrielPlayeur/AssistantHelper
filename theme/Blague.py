@@ -11,8 +11,9 @@ class Blague(Theme.Theme):
         self.api = BlagueApi()
 
     def action(self):
-        self.api.envoyerRequest()
+        resultat = self.api.envoyerRequest()        
         self.resetElement()
+        return resultat
 
 class BlagueApi(Api.Api):
     def __init__(self):
@@ -29,7 +30,6 @@ class BlagueApi(Api.Api):
         if super().checkRequestStatus(reponse):
             blague = reponse.json().get("joke")
             blagueReponse = reponse.json().get("answer")
-            self.afficherBlague(blague, blagueReponse)
-            
-    def afficherBlague(self, blague, blagueReponse):
-        print(f"{blague}\n{blagueReponse}")
+            return f"{blague}\n{blagueReponse}"
+        else:
+            return super().pasResultat()

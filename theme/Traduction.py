@@ -11,12 +11,13 @@ class Traduction(Theme.Theme):
         self.api = TraductionApi()
 
     def action(self):
-        self.api.envoyerRequest()
+        resultat = self.api.envoyerRequest()        
         self.resetElement()
+        return resultat
 
 class TraductionApi(Api.Api):
     def __init__(self):
         super().__init__()
 
     def envoyerRequest(self):
-        print("Work in progress !")
+        return "Work in progress !"

@@ -1,4 +1,3 @@
-from itsdangerous import json
 from outils import Theme, Api
 from erreur import erreur
 
@@ -12,8 +11,9 @@ class Crypto(Theme.Theme):
         self.api = CryptoApi()
 
     def action(self):
-        self.api.envoyerRequest(self.getElement()[0])
+        resultat = self.api.envoyerRequest(self.getElement()[0])        
         self.resetElement()
+        return resultat
 
 class CryptoApi(Api.Api):
     def __init__(self):
@@ -30,9 +30,11 @@ class CryptoApi(Api.Api):
         reponse = super().getRequest(nomCrypto)
         if super().checkRequestStatus(reponse):
             self.addDerniereInfoCrypto(reponse.json())
-            self.afficherDerniereInfoCrypto(reponse.json()['symbol'])
+            return self.derniereInfoCrypto.get(reponse.json()['symbol'])
         elif reponse.status_code == 400:
-            self.afficherDerniereInfoCrypto("")
+            return "Pas de crypto existante"
+        else:
+            return super().pasResultat()
             
     def addDerniereInfoCrypto(self, reponse: dict):
         """
@@ -41,7 +43,4 @@ class CryptoApi(Api.Api):
             Fonction: mettre a jour les information sur la crypto demande
         """
         self.derniereInfoCrypto[reponse['symbol']] = reponse['bids'][0]
-        
-    def afficherDerniereInfoCrypto(self, symbole):
-        print(self.derniereInfoCrypto.get(symbole))
         

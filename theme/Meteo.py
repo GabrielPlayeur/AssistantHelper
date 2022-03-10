@@ -11,8 +11,9 @@ class Meteo(Theme.Theme):
         self.api = MeteoApi()
 
     def action(self):
-        self.api.envoyerRequest(self.getElement()[0])
+        resultat = self.api.envoyerRequest(self.getElement()[0])        
         self.resetElement()
+        return resultat
 
 class MeteoApi(Api.Api):
     def __init__(self):
@@ -30,15 +31,15 @@ class MeteoApi(Api.Api):
         reponse = super().getRequest(nom_ville)
         if super().checkRequestStatus(reponse):
             self.derniereVille = self._castToJson(reponse)
-            self.afficherInfoMeteo()
+            return self.afficherInfoMeteo()
         else:
-            print("Error in the request.",reponse.status_code, reponse.json()["message"])
+            return f"Error in the request. {reponse.status_code} {reponse.json()['message']}"
 
     def afficherInfoMeteo(self):
         if self.derniereVille.get("temp") is not None:
-            print(f"{self.derniereVille['city']:-^50}\n\tCountry: {self.derniereVille['country']}\n\tTemperature: {self.derniereVille['temp']}°\n\tHumidity: {self.derniereVille['humidity']}%\n\tPressure: {self.derniereVille['pressure']}Pa\n\tWeather Report: {self.derniereVille['weather_report']}\n{'':-^50}")
+            return f"{self.derniereVille['city']:-^50}\n\tCountry: {self.derniereVille['country']}\n\tTemperature: {self.derniereVille['temp']}°\n\tHumidity: {self.derniereVille['humidity']}%\n\tPressure: {self.derniereVille['pressure']}Pa\n\tWeather Report: {self.derniereVille['weather_report']}\n{'':-^50}"
         else:
-            print(f"{'':-^50}\n\tNo city entered\n{'':-^50}")
+            return f"{'':-^50}\n\tNo city entered\n{'':-^50}"
 
     def _castToJson(self, reponse):        
         """

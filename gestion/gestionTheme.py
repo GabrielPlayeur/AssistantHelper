@@ -21,13 +21,13 @@ class GestionTheme:
     def themesTrouvesAction(self):
         """
             Entree:
-            Sortie:
+            Sortie: str
             Fonction: execute l'action du theme trouver apres la recherche
         """
         if len(self.themesTrouves) > 1:
             raise erreur.ToManyThemeFind(self.themesTrouves)
         else:
-            self.themesTrouves[0]["theme"].action()
+            return self.themesTrouves[0]["theme"].action()
 
     def themesTrouvesSetElement(self):
         """
