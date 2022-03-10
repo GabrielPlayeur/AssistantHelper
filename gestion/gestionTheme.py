@@ -1,21 +1,42 @@
 from theme import Meteo
+from theme import Traduction
+from theme import Crypto
+from theme import Blague
+from theme import PierrePapierCiseau
+
 from gestion import rechercheTheme
+from erreur import erreur
 
 class GestionTheme:
     def __init__(self):
 
-        self.meteo = Meteo.Meteo()
+        self.theme = {"meteo": Meteo.Meteo(),
+                      "traduction": Traduction.Traduction(),
+                      "crypto":Crypto.Crypto(),
+                      "blague":Blague.Blague(),
+                      "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
-        self.theme = {"meteo": self.meteo,
-                      "meteo2": Meteo.Meteo()}
+        self.themesTrouves = []
 
-        #------------------temp----------------------------
-        self.meteo.ajouterReconnaisseur("temperature")
-        self.meteo.ajouterConnecteur("de")
-        self.meteo.nom="La vraie meteo"
+    def themesTrouvesAction(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: execute l'action du theme trouver apres la recherche
+        """
+        if len(self.themesTrouves) > 1:
+            raise erreur.ToManyThemeFind(self.themesTrouves)
+        else:
+            self.themesTrouves[0]["theme"].action()
 
-        self.theme["meteo2"].ajouterConnecteur(":")
-        #--------------------------------------------------
+    def themesTrouvesSetElement(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: donner au(x) theme(s) trouve apres la recherche les elements trouve
+        """
+        for theme in self.themesTrouves:
+            theme["theme"].setElement(theme["element"])
 
     def verifierTheme(self, texte: str):
         """
@@ -23,8 +44,8 @@ class GestionTheme:
             Sortie: list
             Fonction: retourne la liste des themes possible present dans un texte
         """
-        themesTrouves = rechercheTheme.RechercheTheme(self,texte).get()
-        return themesTrouves
+        self.themesTrouves = rechercheTheme.RechercheTheme(self,texte).get()
+        return self.themesTrouves
 
     def getAllReconnaisseur(self):
         """
