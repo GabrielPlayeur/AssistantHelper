@@ -5,7 +5,7 @@ class Crypto(Theme.Theme):
     def __init__(self):
         super().__init__("crypto", 1)
 
-        super().ajouterReconnaisseur("cour","valeur")
+        super().ajouterReconnaisseur("cours","valeur")
         super().ajouterConnecteur("de","du")
 
         self.api = CryptoApi()

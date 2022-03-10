@@ -1,8 +1,7 @@
 import speech_recognition as sr
 
 r = sr.Recognizer()
-mic = sr.Microphone(device_index=0)
-
+mic = sr.Microphone()
 
 def getAudioListen():
     global r, mic
@@ -10,6 +9,8 @@ def getAudioListen():
     with mic as source:
         r.adjust_for_ambient_noise(source)
         print("Start")
-        audio = r.listen(source)
+        audio = r.listen(source,timeout=15)
         print("Stop")
     return r.recognize_google(audio, language="fr-FR")
+
+print(getAudioListen())

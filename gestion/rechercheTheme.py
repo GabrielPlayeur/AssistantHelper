@@ -1,10 +1,11 @@
 from string import punctuation as ponctuation
+from unidecode import unidecode
 
 class RechercheTheme:
     def __init__(self, gestionTheme: object, texte: str):
         self.gestionTheme = gestionTheme
 
-        self.texte = texte
+        self.texte = unidecode(texte)
 
         self.recupererReconnaisseur()
         self.recupererConnecteur()
@@ -48,21 +49,19 @@ class RechercheTheme:
         """
         self.dictElementThemePossible = []
         for theme in self.listeThemePossible:
-            texteTheme = []            
+            texteTheme = []
             #Determination des connecteurs du theme present dans le texte et ajout du mot suivant
             for connecteur in self.listeConnecteur:
                 if connecteur in theme.getConnecteur():
-                    connecteurRecherche = connecteur
                     valeurDecalage = 1
                     #Si il y a plusieur fois le connecteur
                     if self.texte.count(connecteur) > 1:
-                        connecteurRecherche = " "+connecteurRecherche
-                        valeurDecalage = 2
-                    texte = self.texte[self.texte.lower().index(connecteurRecherche)+len(connecteur)+valeurDecalage:]
+                        connecteur = " "+connecteur
+                    texte = self.texte[self.texte.lower().index(connecteur)+len(connecteur)+valeurDecalage:]
                     if connecteur != ":":
                         for i in ponctuation:
                             if i != "'" and i in texte:
-                                texte = texte.split(i)[0]                                
+                                texte = texte.split(i)[0]
                     #Supprimer les espaces inutile
                     while len(texte)>0 and texte[-1] == " ":
                         texte = texte[:-1]

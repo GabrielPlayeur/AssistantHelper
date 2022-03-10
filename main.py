@@ -1,4 +1,5 @@
 from gestion.gestionTheme import GestionTheme
+from audio.gestionCommandeVocal import GestionAudio
 
 def docstring():
         """
@@ -8,18 +9,19 @@ def docstring():
         """
 
 theme = GestionTheme()
-phrase = "Qu elle est la meteo a Marseille ?"
+audio = GestionAudio()
+phrase = "Qu elle est la météo à Beaupreau ?"
 phrase = "Traduit moi en Anglais : salut les amis !"
-phrase = "Qu elle est le cour de ETH ?"
+phrase = "Qu elle est le cour de BTC ?"
 phrase = "Donne moi ta meilleure blague !"
 phrase = "Jouons papier"
+phrase = "donne-moi la météo à Paris s'il te plaît"
+
 print(theme.verifierTheme(phrase))
 theme.themesTrouvesSetElement()
 theme.themesTrouvesAction()
 
-from temp import audio
-
-phrase = audio.getAudioListen()
+phrase = audio.ecouter()
 print(phrase)
 print(theme.verifierTheme(phrase))
 theme.themesTrouvesSetElement()
