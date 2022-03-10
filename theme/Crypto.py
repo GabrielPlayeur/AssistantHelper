@@ -1,3 +1,4 @@
+from itsdangerous import json
 from outils import Theme, Api
 from erreur import erreur
 
@@ -22,10 +23,10 @@ class CryptoApi(Api.Api):
         
         self.derniereInfoCrypto = {}
 
-    def parametre(self, nomCrypto):
+    def parametre(self, nomCrypto: str):
         return f"/l3/{nomCrypto}-USD"
 
-    def envoyerRequest(self, nomCrypto):
+    def envoyerRequest(self, nomCrypto: str):
         reponse = super().getRequest(nomCrypto)
         if super().checkRequestStatus(reponse):
             self.addDerniereInfoCrypto(reponse.json())
@@ -33,8 +34,13 @@ class CryptoApi(Api.Api):
         elif reponse.status_code == 400:
             self.afficherDerniereInfoCrypto("")
             
-    def addDerniereInfoCrypto(self, reponse):
-            self.derniereInfoCrypto[reponse['symbol']] = reponse['bids'][0]
+    def addDerniereInfoCrypto(self, reponse: dict):
+        """
+            Entree: reponse (dict)
+            Sortie:
+            Fonction: mettre a jour les information sur la crypto demande
+        """
+        self.derniereInfoCrypto[reponse['symbol']] = reponse['bids'][0]
         
     def afficherDerniereInfoCrypto(self, symbole):
         print(self.derniereInfoCrypto.get(symbole))

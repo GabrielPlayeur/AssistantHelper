@@ -53,13 +53,18 @@ class Theme(ABC):
         return self._element
 
     def resetElement(self):
-        self._element = []
-
-    def setElement(self, listeElement):
         """
             Entree:
             Sortie:
-            Fonction:
+            Fonction: remettre dans son etats initial la liste d'element
+        """
+        self._element = []
+
+    def setElement(self, listeElement: list):
+        """
+            Entree: listeElement (list)
+            Sortie:
+            Fonction: verifier les elements trouve: s'il y en a trop, pas assez ou tout est bon
         """
         if len(listeElement) == self.nombreElementDemande:
             self._element = listeElement

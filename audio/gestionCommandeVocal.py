@@ -6,6 +6,11 @@ class GestionAudio:
         self.micro = sr.Microphone()
         
     def ecouter(self):
+        """
+            Entree:
+            Sortie: str
+            Fonction: ecoute l'entree de son donne pour ensuite convertir le son recu en texte
+        """
         texteCompris = ""
         with self.micro as source:
             self.recognizer.adjust_for_ambient_noise(source)
@@ -15,8 +20,12 @@ class GestionAudio:
                 texteCompris = self.recognizer.recognize_google(audio, language="fr-FR")
             except sr.WaitTimeoutError:
                 self.affichage("Rien n'a ete entendu")
-        return texteCompris
+        return texteCompris            
             
-            
-    def affichage(self, texte):
+    def affichage(self, texte: str):
+        """
+            Entree: texte (str)
+            Sortie:
+            Fonction: Afficher le texte donne en parametre
+        """
         print(texte)

@@ -23,10 +23,10 @@ class MeteoApi(Api.Api):
 
         self.derniereVille = {}
 
-    def parametre(self, nom_ville):
+    def parametre(self, nom_ville: str):
         return f"q={nom_ville}&appid={self._API_KEY}"
 
-    def envoyerRequest(self, nom_ville):
+    def envoyerRequest(self, nom_ville: str):
         reponse = super().getRequest(nom_ville)
         if super().checkRequestStatus(reponse):
             self.derniereVille = self._castToJson(reponse)
@@ -40,7 +40,12 @@ class MeteoApi(Api.Api):
         else:
             print(f"{'':-^50}\n\tNo city entered\n{'':-^50}")
 
-    def _castToJson(self, reponse):
+    def _castToJson(self, reponse):        
+        """
+            Entree: reponse
+            Sortie: dict
+            Fonction: selectionner les informations utile pour la meteo de la ville demande
+        """
         data = reponse.json()
         main = data['main']
         return {"city":data["name"],

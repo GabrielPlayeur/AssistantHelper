@@ -11,7 +11,6 @@ class PierrePapierCiseau(Theme.Theme):
 
         self.choixPierrePapierCiseau = ["pierre","papier","ciseau"]
 
-
     def action(self):
         choixJoueur = self.getElement()[0].lower()
         choixAssistant = choice(self.choixPierrePapierCiseau)
@@ -28,7 +27,12 @@ class PierrePapierCiseau(Theme.Theme):
 
         self.resetElement()
 
-    def trouverVainqueur(self, number1, number2):
+    def trouverVainqueur(self, number1: int, number2: int):        
+        """
+            Entree: number1 (int), number2 (int)
+            Sortie:
+            Fonction: trouver le vainqueur du jeu
+        """
         if number1 == number2:
             return 0
         if (number1 == 0 and number2 == 1) or (number1 == 1 and number2 == 2) or (number1 == 2 and number2 == 0):
