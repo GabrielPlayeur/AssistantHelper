@@ -14,12 +14,14 @@ class GestionApplication:
         self.theme = GestionTheme()
         self.audio = GestionAudio()
 
-    def validationRecherche(self, *args):
-        if self.app.saisieDeTexte.get() != "":            
+    def validationRecherche(self, texteAudio="", *args):
+        phrase = self.app.saisieDeTexte.get()
+        if texteAudio != "":
+            phrase = texteAudio            
+        if phrase != "":
             self.app.texte.configure(state='normal')
             self.app.texte.delete("1.0",END)
 
-            phrase = self.app.saisieDeTexte.get()
             date = strftime('%d/%m/%Y, %Hh %Mm %Ss', localtime())
 
             if len(self.theme.verifierTheme(phrase)) > 0:
@@ -48,6 +50,10 @@ class GestionApplication:
 
             self.app.saisieDeTexte.delete(0,END)
             self.app.texte.configure(state='disabled')
+
+    def validationAudio(self, *args):
+        texteAudio = self.audio.ecouter()
+        self.validationRecherche(texteAudio)
 
     def insertTexte(self, texte):
         self.app.texte.configure(state='normal')

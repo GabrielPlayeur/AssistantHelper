@@ -19,7 +19,8 @@ class GestionAudio:
                 audio = self.recognizer.listen(source, timeout=15)
                 texteCompris = self.recognizer.recognize_google(audio, language="fr-FR")
             except sr.WaitTimeoutError:
-                self.affichage("Rien n'a ete entendu")
+                texteCompris = "Rien n'a ete entendu"            
+            self.affichage("End")
         return texteCompris            
             
     def affichage(self, texte: str):

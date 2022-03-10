@@ -31,8 +31,11 @@ class Application(Tk):
         self.cadreDuHaut = Frame(self)
         self.cadreDuHaut.pack(side=TOP)
 
+        self.boutonAudio = Button(self.cadreDuBas, text="parler", command=self.gestionnaire.validationAudio)
+        self.boutonAudio.pack(padx=20, pady=25, side=LEFT)
+
         self.saisieDeTexte = Entry(self.cadreDuBas, textvariable=self._texte, width=30, justify=CENTER, bd=1, takefocus=0)
-        self.saisieDeTexte.pack(side='left', padx=50, pady=25)
+        self.saisieDeTexte.pack(side='left', padx=25, pady=25)
 
         self.boutonVerif = Button(self.cadreDuBas, text="verifier", command=self.gestionnaire.validationRecherche)
         self.boutonVerif.pack(padx=0, pady=25)
@@ -63,13 +66,11 @@ class Application(Tk):
         self.mainmenu.add_cascade(label="Edit", menu=self.deuxiemeMenu)
         self.mainmenu.add_cascade(label="Info", menu=self.troisiemeMenu)
 
-    def creerAction(self):
-        self.texte.bind("<Control-s>", self.sauvegarder)
-        
-        self.saisieDeTexte.bind("<Control-s>", self.sauvegarder)
-        self.saisieDeTexte.bind("<Return>", self.gestionnaire.validationRecherche)        
-        self.saisieDeTexte.bind("<Control-z>",self.undo)
-        self.saisieDeTexte.bind("<Control-y>",self.redo)
+    def creerAction(self):        
+        self.bind("<Control-s>", self.sauvegarder)
+        self.bind("<Return>", self.gestionnaire.validationRecherche)        
+        self.bind("<Control-z>",self.undo)
+        self.bind("<Control-y>",self.redo)
 
     def undo(self,*args):
         self.texte.configure(state="normal")
