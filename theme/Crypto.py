@@ -1,5 +1,4 @@
 from outils import Theme, Api
-from erreur import erreur
 
 class Crypto(Theme.Theme):
     def __init__(self):

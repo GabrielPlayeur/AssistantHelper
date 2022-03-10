@@ -10,10 +10,10 @@ class Api(ABC):
     def envoyerRequest(self, *agrs, **kwars):
         """
             Entree:
-            Sortie:
+            Sortie: str
             Fonction: permet d'envoyer et de traiter une requete envoyer a une api
         """
-        return
+        return ""
     
     def setApiKey(self, apiKey: str):
         """

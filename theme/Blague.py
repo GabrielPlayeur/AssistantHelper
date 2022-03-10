@@ -1,5 +1,4 @@
 from outils import Theme, Api
-from erreur import erreur
 
 class Blague(Theme.Theme):
     def __init__(self):

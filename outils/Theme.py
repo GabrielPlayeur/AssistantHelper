@@ -77,10 +77,10 @@ class Theme(ABC):
     def action(self, *args, **kwars):
         """
             Entree:
-            Sortie:
+            Sortie: str
             Fonction: permet de definir les actions d'un theme
         """
-        return
+        return ""
 
     def __str__(self):
         return f"le theme sur: {self.nom}"

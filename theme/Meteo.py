@@ -1,5 +1,4 @@
 from outils import Theme, Api
-from erreur import erreur
 
 class Meteo(Theme.Theme):
     def __init__(self):
@@ -36,12 +35,17 @@ class MeteoApi(Api.Api):
             return f"Error in the request. {reponse.status_code} {reponse.json()['message']}"
 
     def afficherInfoMeteo(self):
+        """
+            Entree: 
+            Sortie: str
+            Fonction: preparation de l'affichage graphique de la meteo de la ville
+        """
         if self.derniereVille.get("temp") is not None:
             return f"{self.derniereVille['city']:-^50}\n\tCountry: {self.derniereVille['country']}\n\tTemperature: {self.derniereVille['temp']}°\n\tHumidity: {self.derniereVille['humidity']}%\n\tPressure: {self.derniereVille['pressure']}Pa\n\tWeather Report: {self.derniereVille['weather_report']}\n{'':-^50}"
         else:
             return f"{'':-^50}\n\tNo city entered\n{'':-^50}"
 
-    def _castToJson(self, reponse):        
+    def _castToJson(self, reponse):
         """
             Entree: reponse
             Sortie: dict

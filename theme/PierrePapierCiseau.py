@@ -1,5 +1,4 @@
-from outils import Theme, Api
-from erreur import erreur
+from outils import Theme
 from random import choice
 
 class PierrePapierCiseau(Theme.Theme):
