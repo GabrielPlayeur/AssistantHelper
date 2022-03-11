@@ -8,15 +8,15 @@ from time import localtime, strftime
 from tkinter import END, INSERT
 
 class GestionApplication:
-    def __init__(self):
-        self.app = Application(self)
-
+    def __init__(self):        
         self.theme = GestionTheme()
         self.audio = GestionAudio()
+        
+        self.app = Application(self)
 
     def validationRecherche(self, texteAudio="", *args):
         phrase = self.app.saisieDeTexte.get()
-        if texteAudio != "":
+        if isinstance(texteAudio, str) and texteAudio != "":
             phrase = texteAudio            
         if phrase != "":
             self.app.texte.configure(state='normal')
@@ -52,8 +52,10 @@ class GestionApplication:
             self.app.texte.configure(state='disabled')
 
     def validationAudio(self, *args):
+        self.app.saisieDeTexte.configure(state='disabled')
         texteAudio = self.audio.ecouter()
         self.validationRecherche(texteAudio)
+        self.app.saisieDeTexte.configure(state='normal')        
 
     def insertTexte(self, texte):
         self.app.texte.configure(state='normal')

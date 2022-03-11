@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
+import threading
+
 from outils.pile import Pile
 
 class Application(Tk):
@@ -31,7 +33,7 @@ class Application(Tk):
         self.cadreDuHaut = Frame(self)
         self.cadreDuHaut.pack(side=TOP)
 
-        self.boutonAudio = Button(self.cadreDuBas, text="parler", command=self.gestionnaire.validationAudio)
+        self.boutonAudio = Button(self.cadreDuBas, text="parler", command=self.audioAction)
         self.boutonAudio.pack(padx=20, pady=25, side=LEFT)
 
         self.saisieDeTexte = Entry(self.cadreDuBas, textvariable=self._texte, width=30, justify=CENTER, bd=1, takefocus=0)
@@ -67,10 +69,11 @@ class Application(Tk):
         self.mainmenu.add_cascade(label="Info", menu=self.troisiemeMenu)
 
     def creerAction(self):        
-        self.bind("<Control-s>", self.sauvegarder)
-        self.bind("<Return>", self.gestionnaire.validationRecherche)        
+        self.bind("<Control-s>", self.sauvegarder)     
         self.bind("<Control-z>",self.undo)
         self.bind("<Control-y>",self.redo)
+        
+        self.saisieDeTexte.bind("<Return>", self.gestionnaire.validationRecherche)   
 
     def undo(self,*args):
         self.texte.configure(state="normal")
@@ -93,6 +96,9 @@ class Application(Tk):
         self.texte.delete("1.0",END)
         self.texte.insert(INSERT,nouveautexte)
         self.texte.configure(state="disabled")
+
+    def audioAction(self):
+        threading.Thread(target=self.gestionnaire.validationAudio).start()
 
     def credits(self):
         nouvellefenetre = Tk()
