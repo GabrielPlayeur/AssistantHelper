@@ -1,7 +1,11 @@
 from tkinter import *
 from time import *
 from tkinter import filedialog
+<<<<<<< HEAD
 from outils.pile import *
+=======
+from pile import *
+>>>>>>> origin/axel
 
 class Affichage:
     def __init__(self,fenetre):
@@ -50,9 +54,18 @@ class Affichage:
         mainmenu.add_cascade(label="Edit",menu = deuxiemeMenu)
         mainmenu.add_cascade(label="Info",menu = troisiemeMenu)
 
+<<<<<<< HEAD
         scrol = Scrollbar(self.cadreDuHaut,orient=VERTICAL,command = self.texte.yview)
         scrol.pack(side = RIGHT,padx = 5,pady = 20,fill=Y,expand = True)
 
+=======
+
+        scrol = Scrollbar(self.cadreDuHaut,orient=VERTICAL,command = self.texte.yview)
+        scrol.pack(side = RIGHT,padx = 5,pady = 20,fill=Y,expand = True)
+
+        self.texte.configure(yscrollcommand = scrol.set)
+
+>>>>>>> origin/axel
         self.saisieDeTexte.bind("<Control-s>", self.sauvegarder)
         self.saisieDeTexte.bind("<Control-Shift-S>",self.sauvegarder_sous)
         self.saisieDeTexte.bind("<Return>", self.verifTexte)
@@ -77,7 +90,11 @@ class Affichage:
             self.pileEntree.empiler(nouveautexte)
         self.texte.configure(state="disabled")
 
+<<<<<<< HEAD
     def redo(self,*args):
+=======
+    def redo(self):
+>>>>>>> origin/axel
 
         if self.pileSortie.est_pile_vide():
             return
