@@ -14,6 +14,12 @@ class Api(ABC):
             Fonction: permet d'envoyer et de traiter une requete envoyer a une url
         """
         return
+    
+    def setApiKey(self, apiKey):
+        self._API_KEY = apiKey
+        
+    def setUrl(self, url):
+        self.URL = url
 
     def getRequest(self, *agrs, **kwars):
         """
@@ -23,6 +29,14 @@ class Api(ABC):
         """
         url = self.URL + self.parametre(*agrs, **kwars)
         return requests.get(url)
+    
+    def getRequestHeader(self,  *agrs, **kwars):
+        """
+            Entree:
+            Sortie:
+            Fonction: envoie une requeste get a une url et retourne la reponse
+        """
+        return requests.get(self.URL, headers=self.payload(*agrs, **kwars))
     
     def postRequest(self, *agrs, **kwars):
         """
