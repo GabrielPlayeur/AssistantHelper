@@ -3,6 +3,9 @@ from theme import Traduction
 from theme import Crypto
 from theme import Blague
 from theme import PierrePapierCiseau
+from theme import Heure
+from theme import Calculatrice
+from theme import Larousse
 
 from gestion import rechercheTheme
 from erreur import erreur
@@ -14,6 +17,9 @@ class GestionTheme:
                       "traduction": Traduction.Traduction(),
                       "crypto":Crypto.Crypto(),
                       "blague":Blague.Blague(),
+                      "heure":Heure.Heure(),
+                      "calculatrice":Calculatrice.Calculatrice(),
+                      "larousse":Larousse.Larousse(),
                       "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
         self.themesTrouves = []

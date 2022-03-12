@@ -6,6 +6,7 @@ class RechercheTheme:
         self.gestionTheme = gestionTheme
 
         self.texte = unidecode(texte)
+        self.texte = self.texte.replace("'", " ")
 
         self.recupererReconnaisseur()
         self.recupererConnecteur()
@@ -56,7 +57,8 @@ class RechercheTheme:
                     valeurDecalage = 1
                     #Si il y a plusieur fois le connecteur
                     if self.texte.count(connecteur) > 1:
-                        connecteur = " "+connecteur
+                        connecteur = " "+connecteur+" "
+                        valeurDecalage = 0                        
                     texte = self.texte[self.texte.lower().index(connecteur)+len(connecteur)+valeurDecalage:]
                     if connecteur != ":":
                         for i in ponctuation:
