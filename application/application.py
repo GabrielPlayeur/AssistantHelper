@@ -12,14 +12,16 @@ class Application(Tk):
 
         self.geometry("500x600")
         self.title("Assistant")
-        self.resizable(width = False,height = False)
+        self.resizable(width=False, height=False)
 
         self._texte = StringVar()
         self.actual_file = False
-        self.listeTypes =[("fichier texte",".txt"),("autre fichier",".*")]        
+        self.listeTypes = [("fichier texte", ".txt"), ("autre fichier", ".*")]        
         
         self.pileEntree = Pile()
         self.pileSortie = Pile()
+        
+        self.audioActif = False
 
         self.creerWidgets()
         self.creerMenu()
@@ -55,11 +57,12 @@ class Application(Tk):
         self.deuxiemeMenu = Menu(self.mainmenu,tearoff=0)
         self.troisiemeMenu = Menu(self.mainmenu,tearoff=0)
 
-        self.premierMenu.add_command(label="Enregistrer", command=self.sauvegarder)
+        self.premierMenu.add_command(label="Enregistrer", accelerator="Ctrl + s", command=self.sauvegarder)
         self.premierMenu.add_command(label="Enregistrer Sous", command=self.sauvegarder_sous)
+        self.premierMenu.add_command(label="Ecoute du micro", accelerator="Ctrl + r", command=self.audioAction)
 
-        self.deuxiemeMenu.add_command(label="retour en arriere", command=self.undo)
-        self.deuxiemeMenu.add_command(label="retour en avant", command=self.redo)
+        self.deuxiemeMenu.add_command(label="retour en arriere", accelerator="Ctrl + z", command=self.undo)
+        self.deuxiemeMenu.add_command(label="retour en avant", accelerator="Ctrl + y", command=self.redo)
 
         self.troisiemeMenu.add_command(label="comment ça marche ?", command=self.info)
         self.troisiemeMenu.add_command(label="Crédits", command=self.credits)
@@ -68,8 +71,9 @@ class Application(Tk):
         self.mainmenu.add_cascade(label="Edit", menu=self.deuxiemeMenu)
         self.mainmenu.add_cascade(label="Info", menu=self.troisiemeMenu)
 
-    def creerAction(self):        
-        self.bind("<Control-s>", self.sauvegarder)     
+    def creerAction(self):
+        self.bind("<Control-s>", self.sauvegarder)
+        self.bind("<Control-r>",self.audioAction)
         self.bind("<Control-z>",self.undo)
         self.bind("<Control-y>",self.redo)
         
@@ -98,7 +102,8 @@ class Application(Tk):
         self.texte.configure(state="disabled")
 
     def audioAction(self):
-        threading.Thread(target=self.gestionnaire.validationAudio).start()
+        if not self.audioActif:
+            threading.Thread(target=self.gestionnaire.validationAudio).start()
 
     def credits(self):
         nouvellefenetre = Tk()

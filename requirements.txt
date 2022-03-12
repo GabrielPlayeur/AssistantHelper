@@ -1,6 +1,6 @@
 Audio:
     PyAudio
-    SpeechRecognition    
+    SpeechRecognition
 
 GestionTheme:
     unidecode

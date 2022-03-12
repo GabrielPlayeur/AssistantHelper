@@ -52,10 +52,12 @@ class GestionApplication:
             self.app.texte.configure(state='disabled')
 
     def validationAudio(self, *args):
+        self.app.audioActif = True
         self.app.saisieDeTexte.configure(state='disabled')
         texteAudio = self.audio.ecouter()
         self.validationRecherche(texteAudio)
-        self.app.saisieDeTexte.configure(state='normal')        
+        self.app.saisieDeTexte.configure(state='normal')   
+        self.app.audioActif = False     
 
     def insertTexte(self, texte):
         self.app.texte.configure(state='normal')
