@@ -8,6 +8,7 @@ from theme import Heure
 from theme import Calculatrice
 from theme import Larousse
 from theme import Email
+from theme import Twitter
 
 from gestion import rechercheTheme
 from erreur import erreur
@@ -23,6 +24,7 @@ class GestionTheme:
                       "calculatrice":Calculatrice.Calculatrice(),
                       "larousse":Larousse.Larousse(),
                       "mail":Email.Email(),
+                      "twitter":Twitter.Twitter(),
                       "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
         self.themesTrouves = []

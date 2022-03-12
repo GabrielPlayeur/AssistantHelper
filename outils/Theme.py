@@ -71,7 +71,11 @@ class Theme(ABC):
             return
         if len(listeElement) < self.nombreElementDemande:
             raise erreur.MissingElement(listeElement, self.nombreElementDemande)
-        raise erreur.ToManyElement(listeElement, self.nombreElementDemande)
+        if self.nombreElementDemande - listeElement.count("") > self.nombreElementDemande:
+            raise erreur.ToManyElement(listeElement, self.nombreElementDemande)
+        listeElement.remove("")         
+        self._element = listeElement
+        return
 
     @abstractmethod
     def action(self, *args, **kwars):

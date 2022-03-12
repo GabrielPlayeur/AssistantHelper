@@ -5,7 +5,7 @@ class Calculatrice(Theme.Theme):
         super().__init__("calculatrice", 1)
 
         super().ajouterReconnaisseur("calcule", "calcul","calculer")
-        super().ajouterConnecteur(":")
+        super().ajouterConnecteur(":", "calcule")
 
     def action(self):
         element = self.getElement()[0]
