@@ -62,8 +62,10 @@ class RechercheTheme:
                     texte = self.texte[self.texte.lower().index(connecteur)+len(connecteur)+valeurDecalage:]
                     if connecteur != ":":
                         for i in ponctuation:
-                            if i != "'" and i in texte:
+                            if i == "." and i == "." and texte.count("@") == 0:                                
                                 texte = texte.split(i)[0]
+                            elif i not in ["'", "@", "."] and i in texte:
+                                    texte = texte.split(i)[0]
                     #Supprimer les espaces inutile
                     while len(texte)>0 and texte[-1] == " ":
                         texte = texte[:-1]

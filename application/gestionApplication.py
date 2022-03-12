@@ -42,7 +42,7 @@ class GestionApplication:
             else:
                 resultat = "Pas de theme trouver en rapport avec la demande"                
                 
-            texte = f"{phrase}\nfut demandé le : {date}\n{resultat}"
+            texte = f"{phrase}\nfut demandé le : {date}\n\n{resultat}"
 
             self.insertTexte(texte)
             self.app.pileEntree.empiler(texte)

@@ -22,6 +22,8 @@ class Application(Tk):
         self.pileSortie = Pile()
         
         self.audioActif = False
+        self.creditsActif = False
+        self.infoActif = False
 
         self.creerWidgets()
         self.creerMenu()
@@ -106,10 +108,12 @@ class Application(Tk):
             threading.Thread(target=self.gestionnaire.validationAudio).start()
 
     def credits(self):
-        nouvellefenetre = Tk()
-        nouvellefenetre.title("Crédits")
-        nouvellefenetre.geometry("500x600")
-        nouvellefenetre.mainloop()
+        if not self.creditsActif:
+            self.creditsActif = True
+            nouvellefenetre = Tk()
+            nouvellefenetre.title("Crédits")
+            nouvellefenetre.geometry("500x600")
+            nouvellefenetre.mainloop()
 
     def info(self):
         nouvellefenetre = Tk()

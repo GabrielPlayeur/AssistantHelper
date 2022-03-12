@@ -1,3 +1,4 @@
+from tkinter import E
 from theme import Meteo
 from theme import Traduction
 from theme import Crypto
@@ -6,6 +7,7 @@ from theme import PierrePapierCiseau
 from theme import Heure
 from theme import Calculatrice
 from theme import Larousse
+from theme import Email
 
 from gestion import rechercheTheme
 from erreur import erreur
@@ -20,6 +22,7 @@ class GestionTheme:
                       "heure":Heure.Heure(),
                       "calculatrice":Calculatrice.Calculatrice(),
                       "larousse":Larousse.Larousse(),
+                      "mail":Email.Email(),
                       "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
         self.themesTrouves = []

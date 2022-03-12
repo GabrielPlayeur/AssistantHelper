@@ -10,7 +10,7 @@ class Traduction(Theme.Theme):
         self.api = TraductionApi()
 
     def action(self):
-        resultat = self.api.envoyerRequest()        
+        resultat = self.api.envoyerRequest()
         self.resetElement()
         return resultat
 
