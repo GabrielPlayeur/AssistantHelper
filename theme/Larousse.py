@@ -32,9 +32,11 @@ class LarousseApi(Api.Api):
         definition = []
         
         if super().checkRequestStatus(reponse):
+            #Recuperation de la page en format HTML
             soup = BeautifulSoup(reponse.text, 'html.parser')
             for ul in soup.find_all('ul'):
                 if ul.get('class') is not None and 'Definitions' in ul.get('class'):
+                    #Recherche de la definition sur la page
                     definition.append([normalize("NFKD", sub("<.*?>", "", str(li))) for li in ul.find_all('li')])
                     for d in definition[0]:
                         resultat += str(d).replace("\t","")+"\n"

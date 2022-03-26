@@ -8,16 +8,25 @@ from time import localtime, strftime
 from tkinter import END, INSERT
 
 class GestionApplication:
-    def __init__(self):        
+    def __init__(self):
         self.theme = GestionTheme()
         self.audio = GestionAudio()
-        
+
         self.app = Application(self)
 
     def validationRecherche(self, texteAudio="", *args):
+        """
+            Entree: texteAudio (str)
+            Sortie:
+            Fonction: Effectue les actions necessaire pour donner une reponse a la phrase donne :
+                - trouver les themes et les elements
+                - gerer les eventuelles incomprehensions
+                - effectuer l'action
+                - afficher le resultat de l'action dans la zone de reponse
+        """
         phrase = self.app.saisieDeTexte.get()
         if isinstance(texteAudio, str) and texteAudio != "":
-            phrase = texteAudio            
+            phrase = texteAudio
         if phrase != "":
             self.app.texte.configure(state='normal')
             self.app.texte.delete("1.0",END)
@@ -27,7 +36,7 @@ class GestionApplication:
             if len(self.theme.verifierTheme(phrase)) > 0:
 
                 try:
-                    self.theme.themesTrouvesSetElement()                    
+                    self.theme.themesTrouvesSetElement()
 
                     resultat = self.theme.themesTrouvesAction()
                 except erreur.ToManyElement as exception:
@@ -40,29 +49,44 @@ class GestionApplication:
                     resultat = exception
 
             else:
-                resultat = "Pas de theme trouver en rapport avec la demande"                
-                
+                resultat = "Pas de theme trouver en rapport avec la demande"
+
             texte = f"{phrase}\nfut demandé le : {date}\n\n{resultat}"
 
             self.insertTexte(texte)
-            self.app.pileEntree.empiler(texte)
+            self.app.pileEntree.empiler(texte) #Ajout du texte a la pile d'evenement
             self.app.pileSortie=Pile()
 
             self.app.saisieDeTexte.delete(0,END)
             self.app.texte.configure(state='disabled')
 
     def validationAudio(self, *args):
+        """
+            Entree:
+            Sortie:
+            Fonction: active l'ecoute du micro et recherche les themes present dans le texte entendu
+        """
         self.app.audioActif = True
         self.app.saisieDeTexte.configure(state='disabled')
         texteAudio = self.audio.ecouter()
         self.validationRecherche(texteAudio)
-        self.app.saisieDeTexte.configure(state='normal')   
-        self.app.audioActif = False     
+        self.app.saisieDeTexte.configure(state='normal')
+        self.app.audioActif = False
 
-    def insertTexte(self, texte):
+    def insertTexte(self, texte: str):
+        """
+            Entree: texte (str)
+            Sortie:
+            Fonction: ajoute a la zone de reponse le texte donne en parametre
+        """
         self.app.texte.configure(state='normal')
         self.app.texte.insert(INSERT,texte)
         self.app.texte.configure(state='disabled')
 
     def run(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: lance l'application
+        """
         self.app.mainloop()

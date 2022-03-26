@@ -84,4 +84,9 @@ class Api(ABC):
             return False  
         
     def pasResultat(self, texte="Le theme n'a pas fonctionne"):
+        """
+            Entree: texte (str)
+            Sortie: str
+            Fonction: Retourne un texte predefini lorsque rien n'ai trouve par l'action du theme
+        """
         return texte

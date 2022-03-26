@@ -29,7 +29,8 @@ class CryptoApi(Api.Api):
         reponse = super().getRequest(nomCrypto)
         if super().checkRequestStatus(reponse):
             self.addDerniereInfoCrypto(reponse.json())
-            return self.derniereInfoCrypto.get(reponse.json()['symbol'])
+            cryptoTrouve = self.derniereInfoCrypto.get(reponse.json()['symbol'])
+            return f"{reponse.json()['symbol']} est actuelement à {cryptoTrouve['px']}$."
         elif reponse.status_code == 400:
             return "Pas de crypto existante"
         else:

@@ -9,6 +9,7 @@ from theme import Calculatrice
 from theme import Larousse
 from theme import Email
 from theme import Twitter
+from theme import Actualite
 
 from gestion import rechercheTheme
 from erreur import erreur
@@ -25,6 +26,7 @@ class GestionTheme:
                       "larousse":Larousse.Larousse(),
                       "mail":Email.Email(),
                       "twitter":Twitter.Twitter(),
+                      "actualite": Actualite.Actualite(),
                       "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
         self.themesTrouves = []
@@ -35,7 +37,15 @@ class GestionTheme:
             Sortie: str
             Fonction: execute l'action du theme trouver apres la recherche
         """
+        print(self.themesTrouves)
         if len(self.themesTrouves) > 1:
+            #recherche si un connecteur est : (car on le considere comme superieur au autre)
+            prioConnecteur = []
+            for themeIndex in range(len(self.themesTrouves)):
+                if ":" in self.themesTrouves[themeIndex]["connecteur"]:
+                    prioConnecteur.append(self.themesTrouves[themeIndex]["theme"])
+            if len(prioConnecteur) == 1:
+                return prioConnecteur[0].action()
             raise erreur.ToManyThemeFind(self.themesTrouves)
         else:
             return self.themesTrouves[0]["theme"].action()
@@ -46,6 +56,7 @@ class GestionTheme:
             Sortie:
             Fonction: donner au(x) theme(s) trouve apres la recherche les elements trouve
         """
+        print(self.themesTrouves)
         for theme in self.themesTrouves:
             theme["theme"].setElement(theme["element"])
 

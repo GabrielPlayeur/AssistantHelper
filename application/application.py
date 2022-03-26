@@ -7,20 +7,22 @@ from outils.pile import Pile
 class Application(Tk):
     def __init__(self, gestionnaire):
         Tk.__init__(self)
-        
+
         self.gestionnaire = gestionnaire
 
         self.geometry("500x600")
-        self.title("Assistant")
+        self.title("Assistant Didier")
+        self.iconbitmap('application/asset/logo.ico')
+
         self.resizable(width=False, height=False)
 
         self._texte = StringVar()
         self.actual_file = False
-        self.listeTypes = [("fichier texte", ".txt"), ("autre fichier", ".*")]        
-        
+        self.listeTypes = [("fichier texte", ".txt"), ("autre fichier", ".*")]
+
         self.pileEntree = Pile()
         self.pileSortie = Pile()
-        
+
         self.audioActif = False
         self.creditsActif = False
         self.infoActif = False
@@ -32,7 +34,12 @@ class Application(Tk):
         self.config(menu=self.mainmenu)
 
     def creerWidgets(self):
-        self.cadreDuBas = Frame(self, bg="#33A2FF")        
+        """
+            Entree:
+            Sortie:
+            Fonction: initialisation des widgets present sur la page
+        """
+        self.cadreDuBas = Frame(self, bg="#33A2FF")
         self.cadreDuBas.pack(side = BOTTOM, fill=X)
         self.cadreDuHaut = Frame(self)
         self.cadreDuHaut.pack(side=TOP)
@@ -48,12 +55,17 @@ class Application(Tk):
 
         self.texte = Text(self.cadreDuHaut, height=20, width=50, font="Calibri", relief=FLAT)
         self.texte.configure(state='disabled')
-        self.texte.pack(pady=20, padx=5, side=LEFT)        
+        self.texte.pack(pady=20, padx=5, side=LEFT)
 
         self.scrol = Scrollbar(self.cadreDuHaut, orient=VERTICAL, command=self.texte.yview)
         self.scrol.pack(side=RIGHT, padx=5, pady=20, fill=Y, expand=True)
 
     def creerMenu(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: initialisation du menu et sous menus
+        """
         self.mainmenu = Menu(self)
         self.premierMenu = Menu(self.mainmenu,tearoff=0)
         self.deuxiemeMenu = Menu(self.mainmenu,tearoff=0)
@@ -74,14 +86,24 @@ class Application(Tk):
         self.mainmenu.add_cascade(label="Info", menu=self.troisiemeMenu)
 
     def creerAction(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: creation des racourrcies clavier present sur l'application
+        """
         self.bind("<Control-s>", self.sauvegarder)
         self.bind("<Control-r>",self.audioAction)
         self.bind("<Control-z>",self.undo)
         self.bind("<Control-y>",self.redo)
-        
-        self.saisieDeTexte.bind("<Return>", self.gestionnaire.validationRecherche)   
+
+        self.saisieDeTexte.bind("<Return>", self.gestionnaire.validationRecherche)
 
     def undo(self,*args):
+        """
+            Entree:
+            Sortie:
+            Fonction: met a l'etat precedent si cela est possible la zone d'affichage des reponses
+        """
         self.texte.configure(state="normal")
         self.texte.delete("1.0",END)
         if self.pileEntree.est_pile_vide():
@@ -94,6 +116,11 @@ class Application(Tk):
         self.texte.configure(state="disabled")
 
     def redo(self,*args):
+        """
+            Entree:
+            Sortie:
+            Fonction: met a l'etat suivant si cela est possible la zone d'affichage des reponses
+        """
         if self.pileSortie.est_pile_vide():
             return
         self.texte.configure(state="normal")
@@ -104,10 +131,21 @@ class Application(Tk):
         self.texte.configure(state="disabled")
 
     def audioAction(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: Active l'ecoute du micro
+        """
         if not self.audioActif:
+            #On execute sur un autre thread pour eviter que l'application ne freeze pendant le temps de l'ecoute
             threading.Thread(target=self.gestionnaire.validationAudio).start()
 
     def credits(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: ouverture de la fenetre credits
+        """
         if not self.creditsActif:
             self.creditsActif = True
             nouvellefenetre = Tk()
@@ -116,17 +154,36 @@ class Application(Tk):
             nouvellefenetre.mainloop()
 
     def info(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: ouverture de la fenetre information
+        """
         nouvellefenetre = Tk()
         nouvellefenetre.title("comment ça marche ?")
         nouvellefenetre.geometry("500x600")
         nouvellefenetre.mainloop()
 
     def sauvegarder(self,*args):
+        """
+            Entree:
+            Sortie:
+            Fonction: sauvegarde le contenu de la zone de reponse dans un ficher txt
+        """
         if not self.actual_file:
             self.sauvegarder_sous()
         else:
             open(self.actual_file, "w").write(self.texte.get(0.,END))
 
     def sauvegarder_sous(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: cree un ficher txt pour enregister le contenu de la zone de reponse dans un ficher txt
+        """
         self.actual_file = filedialog.asksaveasfilename(filetypes = self.listeTypes,defaultextension = self.listeTypes)
-        open(self.actual_file, "w").write(self.texte.get(0., END))
+        try:
+            open(self.actual_file, "w").write(self.texte.get(0., END))
+        except FileNotFoundError:
+            #Cas ou l'action d'enregistrer est annule comme appuyer sur echap
+            pass

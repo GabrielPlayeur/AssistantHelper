@@ -5,12 +5,12 @@ class Meteo(Theme.Theme):
         super().__init__("meteo", 1)
 
         super().ajouterReconnaisseur("meteo","temperature","chaleur","temps")
-        super().ajouterConnecteur("a","de","en")
+        super().ajouterConnecteur("a","de","en","au")
 
         self.api = MeteoApi()
 
     def action(self):
-        resultat = self.api.envoyerRequest(self.getElement()[0])        
+        resultat = self.api.envoyerRequest(self.getElement()[0])
         self.resetElement()
         return resultat
 
@@ -36,7 +36,7 @@ class MeteoApi(Api.Api):
 
     def afficherInfoMeteo(self):
         """
-            Entree: 
+            Entree:
             Sortie: str
             Fonction: preparation de l'affichage graphique de la meteo de la ville
         """
