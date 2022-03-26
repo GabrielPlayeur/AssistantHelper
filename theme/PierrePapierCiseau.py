@@ -27,7 +27,6 @@ class PierrePapierCiseau(Theme.Theme):
             else:
                 return f"Pas de vainqueur match nul avec {choixJoueur}."
 
-
     def trouverVainqueur(self, number1: int, number2: int):        
         """
             Entree: number1 (int), number2 (int)

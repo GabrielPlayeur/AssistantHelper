@@ -27,58 +27,53 @@ class GestionApplication:
         phrase = self.app.saisieDeTexte.get()
         if isinstance(texteAudio, str) and texteAudio != "":
             phrase = texteAudio
-        if phrase != "":
-            self.app.texte.configure(state='normal')
-            self.app.texte.delete("1.0",END)
+        if phrase == "":
+            return
+        
+        self.app.texte.configure(state='normal')
+        self.app.texte.delete("1.0",END)
 
-            date = strftime('%d/%m/%Y, %Hh %Mm %Ss', localtime())
+        date = strftime('%d/%m/%Y, %Hh %Mm %Ss', localtime())
 
-            if len(self.theme.verifierTheme(phrase)) > 0:
-
-                try:
-                    self.theme.themesTrouvesSetElement()
-
-                    resultat = self.theme.themesTrouvesAction()
-                except erreur.ToManyElement as exception:
-                    resultat = exception
-
-                except erreur.MissingElement as exception:
-                    resultat = exception
-
-                except erreur.ToManyThemeFind as exception: #Changer pour demander un choix
-                    resultat = exception
-
-            else:
-<<<<<<< HEAD
+        if len(self.theme.verifierTheme(phrase)) > 0:
+            resultat = self.recuperationResultat()
+        else:               
+            reponse, phrase = self.theme.verifierOrthographe(phrase)
+            if reponse == True and len(self.theme.verifierTheme(phrase)) > 0:
+                resultat = self.recuperationResultat()
+            else:                    
                 resultat = "Pas de theme trouver en rapport avec la demande"
 
-=======
-                reponse,phrase = self.theme.verifierOrthographe(phrase) 
-                if reponse == True:
-                    if len(self.theme.verifierTheme(phrase)) > 0:
-                        try:
-                            self.theme.themesTrouvesSetElement()                    
-                            resultat = self.theme.themesTrouvesAction()
-                        except erreur.ToManyElement as exception:
-                            resultat = exception
+        print(self.theme.themesTrouves)
+            
+        texte = f"{phrase}\nfut demandé le : {date}\n\n{resultat}"
 
-                        except erreur.MissingElement as exception:
-                            resultat = exception
+        self.insertTexte(texte)
+        self.app.pileEntree.empiler(texte) #Ajout du texte a la pile d'evenement
+        self.app.pileSortie=Pile()
 
-                        except erreur.ToManyThemeFind as exception: #Changer pour demander un choix
-                            resultat = exception
-                else:
-                    resultat = "Pas de theme trouver en rapport avec la demande"                
-                
->>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
-            texte = f"{phrase}\nfut demandé le : {date}\n\n{resultat}"
+        self.app.saisieDeTexte.delete(0,END)
+        self.app.texte.configure(state='disabled')
 
-            self.insertTexte(texte)
-            self.app.pileEntree.empiler(texte) #Ajout du texte a la pile d'evenement
-            self.app.pileSortie=Pile()
+    def recuperationResultat(self):
+        """
+            Entree:
+            Sortie: str
+            Fonction: Selectionne la reponse revoie par l'assistant en fonction des situations
+        """
+        try:
+            self.theme.themesTrouvesSetElement()
 
-            self.app.saisieDeTexte.delete(0,END)
-            self.app.texte.configure(state='disabled')
+            resultat = self.theme.themesTrouvesAction()
+        except erreur.ToManyElement as exception:
+            resultat = exception
+
+        except erreur.MissingElement as exception:
+            resultat = exception
+
+        except erreur.ToManyThemeFind as exception:
+            resultat = exception
+        return resultat
 
     def validationAudio(self, *args):
         """

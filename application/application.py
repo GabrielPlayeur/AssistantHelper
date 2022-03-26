@@ -4,7 +4,7 @@ import threading
 
 from outils.pile import Pile
 from application.credit import Credit
-from application.info import Info
+from application.information import Information
 
 class Application(Tk):
     def __init__(self, gestionnaire):
@@ -36,7 +36,6 @@ class Application(Tk):
         self.config(menu=self.mainmenu)
 
     def creerWidgets(self):
-<<<<<<< HEAD
         """
             Entree:
             Sortie:
@@ -44,8 +43,6 @@ class Application(Tk):
         """
         self.cadreDuBas = Frame(self, bg="#33A2FF")
         self.cadreDuBas.pack(side = BOTTOM, fill=X)
-=======
->>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
         self.cadreDuHaut = Frame(self)
         self.cadreDuHaut.pack(side=TOP)
         self.cadreDuBas = Frame(self, bg="#33A2FF")
@@ -53,11 +50,7 @@ class Application(Tk):
 
         self.texte = Text(self.cadreDuHaut, height=25, width=50, font="Calibri", relief=FLAT)
         self.texte.configure(state='disabled')
-<<<<<<< HEAD
-        self.texte.pack(pady=20, padx=5, side=LEFT)
-=======
         self.texte.pack(pady=5, padx=5, side=LEFT)
->>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
 
         self.scrol = Scrollbar(self.cadreDuHaut, orient=VERTICAL, command=self.texte.yview)
         self.scrol.pack(side=RIGHT, padx=5, pady=5, fill=Y, expand=True)
@@ -70,8 +63,6 @@ class Application(Tk):
 
         self.boutonVerif = Button(self.cadreDuBas, text="ENTRER", command=self.gestionnaire.validationRecherche)
         self.boutonVerif.pack(side= "left",padx=5, pady=25)
-
-
 
     def creerMenu(self):
         """
@@ -91,7 +82,7 @@ class Application(Tk):
         self.deuxiemeMenu.add_command(label="retour en arriere", accelerator="Ctrl + z", command=self.undo)
         self.deuxiemeMenu.add_command(label="retour en avant", accelerator="Ctrl + y", command=self.redo)
 
-        self.troisiemeMenu.add_command(label="comment ça marche ?", command=self.info)
+        self.troisiemeMenu.add_command(label="comment ça marche ?", command=self.information)
         self.troisiemeMenu.add_command(label="Crédits", command=self.credits)
 
         self.mainmenu.add_cascade(label="Fichier", menu=self.premierMenu)
@@ -163,22 +154,15 @@ class Application(Tk):
             self.creditsActif = True
             Credit(self)
 
-    def info(self):
-<<<<<<< HEAD
+    def information(self):
         """
             Entree:
             Sortie:
             Fonction: ouverture de la fenetre information
         """
-        nouvellefenetre = Tk()
-        nouvellefenetre.title("comment ça marche ?")
-        nouvellefenetre.geometry("500x600")
-        nouvellefenetre.mainloop()
-=======
         if not self.infoActif:
             self.infoActif = True
-            Info(self)
->>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
+            Information(self)
 
     def sauvegarder(self,*args):
         """

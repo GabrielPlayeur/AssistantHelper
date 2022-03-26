@@ -1,4 +1,3 @@
-from tkinter import E
 from theme import Meteo
 from theme import Traduction
 from theme import Crypto
@@ -38,7 +37,6 @@ class GestionTheme:
             Sortie: str
             Fonction: execute l'action du theme trouver apres la recherche
         """
-        print(self.themesTrouves)
         if len(self.themesTrouves) > 1:
             #recherche si un connecteur est : (car on le considere comme superieur au autre)
             prioConnecteur = []
@@ -57,7 +55,6 @@ class GestionTheme:
             Sortie:
             Fonction: donner au(x) theme(s) trouve apres la recherche les elements trouve
         """
-        print(self.themesTrouves)
         for theme in self.themesTrouves:
             theme["theme"].setElement(theme["element"])
 
@@ -77,7 +74,6 @@ class GestionTheme:
             Fonction: retourne True s'il trouve valeur corrigée en la donnant, sinon False en donnant la meme valeur que celle donnée
         """
         correcteur = correction.Correcteur(texte)
-
         return correcteur.check(),correcteur.get()
 
 
@@ -117,4 +113,3 @@ class GestionTheme:
         for theme in self.theme.values():
             listeUrl.append(theme.api.URL)
         return listeUrl
-

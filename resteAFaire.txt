@@ -1,2 +1,3 @@
-correction probleme detection :
-Ajout docstring
+Ameliorer le fonctionnement de la detection des ":"
+    - Ne pas detecter les connecteurs apres les ":"
+    - Ne pas detecter les connecteurs avant les reconnaisseurs

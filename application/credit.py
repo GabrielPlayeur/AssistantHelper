@@ -13,10 +13,20 @@ class Credit(Tk):
         self.mainloop()
 
     def fenetre_texte(self):
+        """
+            Entree:
+            Sortie:
+            Fonction: initialisation des widgets present sur la page
+        """
         self.label = Label(self,text = "Crédit :",justify = 'center',font = ("Arial", 24, "bold")).pack(side = "top",pady = 5)
-        self.sousLabel = Label(self,text = "Développeur : Gabriel Teigné\nGraphiste : Axel Bonneau\nPour l'image : Didier\nA prêter sa voie : Didier\nMerci Didier !!!\nMerci aussi à Gabriel\net moi (Axel)",justify = 'left',font = ("Arial", 16,)).pack(pady = 5,side = LEFT)
+        self.sousLabel = Label(self,text = "Développeur : Gabriel Teigné, Axel Bonneau\nDesigner interface utilisateur: Gabriel Teigné, Axel Bonneau\nGraphiste : Axel Bonneau\nPour l'image : Didier\nA prêter sa voie : Didier\nMerci Didier !!!\nMerci aussi à Gabriel\net moi (Axel)",justify = 'left',font = ("Arial", 16,)).pack(pady = 5,side = LEFT)
 
     def destroy(self,*args):
+        """
+            Entree:
+            Sortie:
+            Fonction: Reinitialiser la possibilite de lancer une autre fenetre de credit
+        """
         self.application.creditsActif = False
         super().destroy()
 

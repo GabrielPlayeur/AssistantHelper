@@ -7,7 +7,7 @@ class RechercheTheme:
 
         self.texte = unidecode(texte)
         self.texte = self.texte.replace("'", " ")
-
+        
         self.recupererReconnaisseur()
         self.recupererConnecteur()
 

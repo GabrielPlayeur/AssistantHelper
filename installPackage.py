@@ -15,7 +15,7 @@ subprocess.check_call([sys.executable, '-m', 'pip', 'install','--upgrade',pyAudi
 #-------------------------------------------------------------------------------------------
 
 
-listeModule = ["SpeechRecognition","unidecode","bs4","tzwhere","geopy","tweepy"] #Liste des autres modules utilise par l'assistant
+listeModule = ["SpeechRecognition","unidecode","bs4","tzwhere","geopy","tweepy","autocorrect"] #Liste des autres modules utilise par l'assistant
 
 for module in listeModule:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install','--upgrade',module]) #Installation de chaque module avec la commande pip

@@ -15,18 +15,17 @@ class Heure(Theme.Theme):
         self.geolocator = Nominatim(user_agent="geoapiExercises")
 
     def action(self):
-        lad = self.getElement()[0]        
+        lad = self.getElement()[0] #Recuperation de l'endroit demande
         location = self.geolocator.geocode(lad)
-        timezoneStr = tzwhere.tzwhere().tzNameAt(location.latitude, location.longitude)
+        timezoneStr = tzwhere.tzwhere().tzNameAt(location.latitude, location.longitude) #recuperation de la position de la ville
 
         if timezoneStr is None:
-            resultat = "Ne peut pas déterminer la localisation de votre ville donnée"
+            resultat = "Impossible de déterminer la localisation de la ville donnée"
         else:
-            timezonePy = timezone(timezoneStr)
-            dt = datetime.utcnow()
-            res = dt + timezonePy.utcoffset(dt)
-            res2 = res.strftime("%H:%M")
-            resultat =  f"Il est {res2} à/en {timezoneStr}"
-        
+            timezonePy = timezone(timezoneStr) #recuperation de la timezone de la ville
+            dt = datetime.utcnow() #Recuperation de notre heure
+            res = dt + timezonePy.utcoffset(dt) #ajout du decalage
+            res2 = res.strftime("%H:%M") #formatage de l'heure
+            resultat =  f"Il est {res2} à/en {timezoneStr}"        
         self.resetElement()
         return resultat
