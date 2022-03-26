@@ -3,24 +3,28 @@ from tkinter import filedialog
 import threading
 
 from outils.pile import Pile
+from application.credit import Credit
+from application.info import Info
 
 class Application(Tk):
     def __init__(self, gestionnaire):
         Tk.__init__(self)
-        
+
         self.gestionnaire = gestionnaire
 
         self.geometry("500x600")
-        self.title("Assistant")
+        self.title("Assistant Didier")
+        self.iconbitmap('application/asset/logo.ico')
+
         self.resizable(width=False, height=False)
 
         self._texte = StringVar()
         self.actual_file = False
-        self.listeTypes = [("fichier texte", ".txt"), ("autre fichier", ".*")]        
-        
+        self.listeTypes = [("fichier texte", ".txt"), ("autre fichier", ".*")]
+
         self.pileEntree = Pile()
         self.pileSortie = Pile()
-        
+
         self.audioActif = False
         self.creditsActif = False
         self.infoActif = False
@@ -32,26 +36,28 @@ class Application(Tk):
         self.config(menu=self.mainmenu)
 
     def creerWidgets(self):
-        self.cadreDuBas = Frame(self, bg="#33A2FF")        
-        self.cadreDuBas.pack(side = BOTTOM, fill=X)
         self.cadreDuHaut = Frame(self)
         self.cadreDuHaut.pack(side=TOP)
+        self.cadreDuBas = Frame(self, bg="#33A2FF")
+        self.cadreDuBas.pack(side = BOTTOM,fill = X)
 
-        self.boutonAudio = Button(self.cadreDuBas, text="parler", command=self.audioAction)
-        self.boutonAudio.pack(padx=20, pady=25, side=LEFT)
-
-        self.saisieDeTexte = Entry(self.cadreDuBas, textvariable=self._texte, width=30, justify=CENTER, bd=1, takefocus=0)
-        self.saisieDeTexte.pack(side='left', padx=25, pady=25)
-
-        self.boutonVerif = Button(self.cadreDuBas, text="verifier", command=self.gestionnaire.validationRecherche)
-        self.boutonVerif.pack(padx=0, pady=25)
-
-        self.texte = Text(self.cadreDuHaut, height=20, width=50, font="Calibri", relief=FLAT)
+        self.texte = Text(self.cadreDuHaut, height=25, width=50, font="Calibri", relief=FLAT)
         self.texte.configure(state='disabled')
-        self.texte.pack(pady=20, padx=5, side=LEFT)        
+        self.texte.pack(pady=5, padx=5, side=LEFT)
 
         self.scrol = Scrollbar(self.cadreDuHaut, orient=VERTICAL, command=self.texte.yview)
-        self.scrol.pack(side=RIGHT, padx=5, pady=20, fill=Y, expand=True)
+        self.scrol.pack(side=RIGHT, padx=5, pady=5, fill=Y, expand=True)
+
+        self.boutonAudio = Button(self.cadreDuBas, text="PARLER", command=self.audioAction)
+        self.boutonAudio.pack(padx=5, pady=25, side=LEFT)
+
+        self.saisieDeTexte = Entry(self.cadreDuBas, textvariable=self._texte, width=60, justify=CENTER, bd=1, takefocus=0)
+        self.saisieDeTexte.pack(side='left', padx=5, pady=25,fill = Y)
+
+        self.boutonVerif = Button(self.cadreDuBas, text="ENTRER", command=self.gestionnaire.validationRecherche)
+        self.boutonVerif.pack(side= "left",padx=5, pady=25)
+
+
 
     def creerMenu(self):
         self.mainmenu = Menu(self)
@@ -71,15 +77,15 @@ class Application(Tk):
 
         self.mainmenu.add_cascade(label="Fichier", menu=self.premierMenu)
         self.mainmenu.add_cascade(label="Edit", menu=self.deuxiemeMenu)
-        self.mainmenu.add_cascade(label="Info", menu=self.troisiemeMenu)
+        self.mainmenu.add_cascade(label="Aide", menu=self.troisiemeMenu)
 
     def creerAction(self):
         self.bind("<Control-s>", self.sauvegarder)
         self.bind("<Control-r>",self.audioAction)
         self.bind("<Control-z>",self.undo)
         self.bind("<Control-y>",self.redo)
-        
-        self.saisieDeTexte.bind("<Return>", self.gestionnaire.validationRecherche)   
+
+        self.saisieDeTexte.bind("<Return>", self.gestionnaire.validationRecherche)
 
     def undo(self,*args):
         self.texte.configure(state="normal")
@@ -110,16 +116,12 @@ class Application(Tk):
     def credits(self):
         if not self.creditsActif:
             self.creditsActif = True
-            nouvellefenetre = Tk()
-            nouvellefenetre.title("Crédits")
-            nouvellefenetre.geometry("500x600")
-            nouvellefenetre.mainloop()
+            Credit(self)
 
     def info(self):
-        nouvellefenetre = Tk()
-        nouvellefenetre.title("comment ça marche ?")
-        nouvellefenetre.geometry("500x600")
-        nouvellefenetre.mainloop()
+        if not self.infoActif:
+            self.infoActif = True
+            Info(self)
 
     def sauvegarder(self,*args):
         if not self.actual_file:

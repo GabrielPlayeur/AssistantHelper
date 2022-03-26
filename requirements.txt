@@ -6,5 +6,6 @@ GestionTheme:
     unidecode
 
 Theme:
+    bs4
     tzwhere
     geopy

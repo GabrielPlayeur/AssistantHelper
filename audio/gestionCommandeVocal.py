@@ -4,7 +4,12 @@ from tkinter import messagebox
 class GestionAudio:
     def __init__(self):
         self.recognizer = sr.Recognizer()
-        self.micro = sr.Microphone()
+        self.aMicro = True
+        try:
+            self.micro = sr.Microphone()
+        except OSError:
+            self.micro = None
+            self.aMicro = False
         
     def ecouter(self):
         """
@@ -12,6 +17,8 @@ class GestionAudio:
             Sortie: str
             Fonction: ecoute l'entree de son donne pour ensuite convertir le son recu en texte
         """
+        if not self.aMicro:
+            return "Pas de micro connecté au PC"
         texteCompris = ""
         with self.micro as source:
             self.recognizer.adjust_for_ambient_noise(source)            

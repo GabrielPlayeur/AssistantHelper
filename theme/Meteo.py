@@ -4,7 +4,7 @@ class Meteo(Theme.Theme):
     def __init__(self):
         super().__init__("meteo", 1)
 
-        super().ajouterReconnaisseur("meteo","temperature","chaleur","temps")
+        super().ajouterReconnaisseur("meteo","temperature","chaleur","temps","meteorologie","prevision")
         super().ajouterConnecteur("a","de","en")
 
         self.api = MeteoApi()

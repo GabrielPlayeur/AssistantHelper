@@ -1,10 +1,12 @@
 NOT WORKING   -> https://www.deepl.com/fr/docs-api/
 
 OK -> https://openweathermap.org/city/3034111
-   -> https://newsapi.org/
+OK -> https://newsapi.org/
 OK -> https://www.blockchain.com/api/exchange_rates_api
 OK -> https://www.larousse.fr/dictionnaires/francais/
 OK -> https://rapidapi.com/fr/LemmoTresto/api/joke3/
 OK -> l'heure dans different pays
 OK -> Calculatrice
 OK -> Pierre Papier Ciseau
+OK -> Envoi mail
+   -> Envoi tweet

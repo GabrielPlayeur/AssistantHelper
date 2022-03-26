@@ -9,7 +9,7 @@ class Heure(Theme.Theme):
     def __init__(self):
         super().__init__("heure",1)
 
-        super().ajouterReconnaisseur("heure")
+        super().ajouterReconnaisseur("heure","fuseau","horaire")
         super().ajouterConnecteur("a","en","de")
 
         self.geolocator = Nominatim(user_agent="geoapiExercises")

@@ -9,9 +9,11 @@ from theme import Calculatrice
 from theme import Larousse
 from theme import Email
 from theme import Twitter
+from theme import Actualite
 
 from gestion import rechercheTheme
 from erreur import erreur
+from gestion import correction
 
 class GestionTheme:
     def __init__(self):
@@ -25,6 +27,7 @@ class GestionTheme:
                       "larousse":Larousse.Larousse(),
                       "mail":Email.Email(),
                       "twitter":Twitter.Twitter(),
+                      "actualite": Actualite.Actualite(),
                       "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
 
         self.themesTrouves = []
@@ -57,6 +60,17 @@ class GestionTheme:
         """
         self.themesTrouves = rechercheTheme.RechercheTheme(self,texte).get()
         return self.themesTrouves
+
+    def verifierOrthographe(self, texte: str):
+        """
+            Entree: texte (str)
+            Sortie: Bouléen, str
+            Fonction: retourne True s'il trouve valeur corrigée en la donnant, sinon False en donnant la meme valeur que celle donnée
+        """
+        correcteur = correction.Correcteur(texte)
+
+        return correcteur.check(),correcteur.get()
+
 
     def getAllReconnaisseur(self):
         """
@@ -94,3 +108,4 @@ class GestionTheme:
         for theme in self.theme.values():
             listeUrl.append(theme.api.URL)
         return listeUrl
+
