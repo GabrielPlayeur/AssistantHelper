@@ -5,8 +5,13 @@ class Actualite(Theme.Theme):
     def __init__(self):
         super().__init__("actualite", 1)
 
+<<<<<<< HEAD
         super().ajouterReconnaisseur("news")
         super().ajouterConnecteur("de",":")
+=======
+        super().ajouterReconnaisseur("news","journal","information","actualite")
+        super().ajouterConnecteur("de",":","sur")
+>>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
 
         self.api = ActualiteApi()
 
@@ -39,6 +44,7 @@ class ActualiteApi(Api.Api):
         return "Pas d'article sur le sujet aujourd'hui"
 
     def addDerniereActu(self, article: dict):
+<<<<<<< HEAD
         """
             Entree: article (dict)
             Sortie:
@@ -52,4 +58,9 @@ class ActualiteApi(Api.Api):
             Sortie: str
             Fonction: retourne une chaine de caractere d'artcile mit en forme pour l'afficher
         """
+=======
+        self.info[article["url"]] = {"author": article["author"], "title": article["title"], "date":article["publishedAt"], "description": article["description"], "site": article["source"]["name"],"url": article["url"]}
+
+    def afficherArticle(self, article: dict):
+>>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
         return f"{article['title']}\n{article['site']}\n{article['author']} - {article['date']}\n\n{article['description']}\n\n{article['url']}"

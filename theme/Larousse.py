@@ -7,7 +7,7 @@ class Larousse(Theme.Theme):
     def __init__(self):
         super().__init__("larousse", 1)
 
-        super().ajouterReconnaisseur("cherche","definit","definition","définition")
+        super().ajouterReconnaisseur("cherche","definit","definition","rechercher","etudier","consulter")
         super().ajouterConnecteur(":","de")
 
         self.api = LarousseApi()

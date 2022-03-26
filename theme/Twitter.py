@@ -5,7 +5,7 @@ class Twitter(Theme.Theme):
     def __init__(self):
         super().__init__("twitter", 1)
 
-        super().ajouterReconnaisseur("tweet")
+        super().ajouterReconnaisseur("tweet","gazouillis","ratio")
         super().ajouterConnecteur("tweet",":")
 
         self.api = TwitterApi()

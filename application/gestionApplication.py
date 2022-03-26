@@ -49,8 +49,28 @@ class GestionApplication:
                     resultat = exception
 
             else:
+<<<<<<< HEAD
                 resultat = "Pas de theme trouver en rapport avec la demande"
 
+=======
+                reponse,phrase = self.theme.verifierOrthographe(phrase) 
+                if reponse == True:
+                    if len(self.theme.verifierTheme(phrase)) > 0:
+                        try:
+                            self.theme.themesTrouvesSetElement()                    
+                            resultat = self.theme.themesTrouvesAction()
+                        except erreur.ToManyElement as exception:
+                            resultat = exception
+
+                        except erreur.MissingElement as exception:
+                            resultat = exception
+
+                        except erreur.ToManyThemeFind as exception: #Changer pour demander un choix
+                            resultat = exception
+                else:
+                    resultat = "Pas de theme trouver en rapport avec la demande"                
+                
+>>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
             texte = f"{phrase}\nfut demandé le : {date}\n\n{resultat}"
 
             self.insertTexte(texte)

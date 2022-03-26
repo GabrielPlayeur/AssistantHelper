@@ -7,7 +7,11 @@ class GestionAudio:
         self.aMicro = True
         try:
             self.micro = sr.Microphone()
+<<<<<<< HEAD
         except OSError: #Pas de micro trouvé sur le PC
+=======
+        except OSError:
+>>>>>>> 0afc1e90c019a0eacffef177af048d6a56d83500
             self.micro = None
             self.aMicro = False
         
