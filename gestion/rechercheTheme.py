@@ -7,7 +7,7 @@ class RechercheTheme:
 
         self.texte = unidecode(texte)
         self.texte = self.texte.replace("'", " ")
-        
+
         self.recupererReconnaisseur()
         self.recupererConnecteur()
 
@@ -53,16 +53,16 @@ class RechercheTheme:
         self.dictElementThemePossible = []
         for theme in self.listeThemePossible:
             dictThemeActuel = {"texte": [], "connecteur": []}
+            texteApresReconnaisseur = self.texte[self.texte.lower().index(theme["reconnaiseur"][0]):]
             #Determination des connecteurs du theme present dans le texte et ajout du mot suivant
             for connecteur in self.listeConnecteur:
-                if connecteur in theme["theme"].getConnecteur():
+                if connecteur in theme["theme"].getConnecteur() and connecteur in texteApresReconnaisseur.lower():
                     valeurDecalage = 1
                     #Si il y a plusieur fois le connecteur
-                    #texteApresReconnaisseur = self.texte[self.texte.index()]
-                    if self.texte.count(connecteur) > 1:
+                    if texteApresReconnaisseur.count(connecteur) > 1:
                         connecteur = " "+connecteur+" "
                         valeurDecalage = 0
-                    texte = self.texte[self.texte.lower().index(connecteur)+len(connecteur)+valeurDecalage:]
+                    texte = texteApresReconnaisseur[texteApresReconnaisseur.lower().index(connecteur)+len(connecteur)+valeurDecalage:]
                     if connecteur != ":":
                         for i in ponctuation:
                             if i == "." and i == "." and texte.count("@") == 0:
@@ -85,7 +85,10 @@ class RechercheTheme:
         self.listeReconnaisseur = []
         for Reconnaisseur in self.gestionTheme.getAllReconnaisseur():
             if Reconnaisseur.lower() in self.texte.lower().split(" "):
-                self.listeReconnaisseur.append(Reconnaisseur)
+                if not ":" in self.texte.lower():
+                    self.listeReconnaisseur.append(Reconnaisseur)
+                elif self.texte.lower().index(Reconnaisseur) <= self.texte.index(":"):
+                    self.listeReconnaisseur.append(Reconnaisseur)
 
     def recupererConnecteur(self):
         """
@@ -95,5 +98,8 @@ class RechercheTheme:
         """
         self.listeConnecteur = []
         for connecteur in self.gestionTheme.getAllConnecteur():
-            if connecteur.lower() in self.texte.lower().split(" "):
-                self.listeConnecteur.append(connecteur)
+            if (connecteur.lower() in self.texte.lower().split(" ")):
+                if not ":" in self.texte.lower():
+                    self.listeConnecteur.append(connecteur)
+                elif self.texte.lower().index(connecteur) <= self.texte.index(":"):
+                    self.listeConnecteur.append(connecteur)

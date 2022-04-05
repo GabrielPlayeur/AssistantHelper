@@ -3,6 +3,7 @@ from gestion.gestionTheme import GestionTheme
 from audio.gestionCommandeVocal import GestionAudio
 from outils.pile import Pile
 from erreur import erreur
+from log.gestionLog import *
 
 from time import localtime, strftime
 from tkinter import END, INSERT
@@ -12,6 +13,7 @@ class GestionApplication:
         self.theme = GestionTheme()
         self.audio = GestionAudio()
 
+        self.logger = Logger("log/info.log")
         self.app = Application(self)
 
     def validationRecherche(self, texteAudio="", *args):
@@ -29,7 +31,7 @@ class GestionApplication:
             phrase = texteAudio
         if phrase == "":
             return
-        
+
         self.app.texte.configure(state='normal')
         self.app.texte.delete("1.0",END)
 
@@ -37,15 +39,16 @@ class GestionApplication:
 
         if len(self.theme.verifierTheme(phrase)) > 0:
             resultat = self.recuperationResultat()
-        else:               
+        else:
             reponse, phrase = self.theme.verifierOrthographe(phrase)
-            if reponse == True and len(self.theme.verifierTheme(phrase)) > 0:
+            if reponse == True and len(self.theme.verifierTheme(phrase)) > 0:                
+                logging.info("Correction de la phrase en "+phrase)
                 resultat = self.recuperationResultat()
-            else:                    
+            else:
                 resultat = "Pas de theme trouver en rapport avec la demande"
 
-        print(self.theme.themesTrouves)
-            
+        logging.info(self.theme.themesTrouves)
+
         texte = f"{phrase}\nfut demandé le : {date}\n\n{resultat}"
 
         self.insertTexte(texte)
@@ -82,8 +85,10 @@ class GestionApplication:
             Fonction: active l'ecoute du micro et recherche les themes present dans le texte entendu
         """
         self.app.audioActif = True
-        self.app.saisieDeTexte.configure(state='disabled')
-        texteAudio = self.audio.ecouter()
+        self.app.saisieDeTexte.configure(state='disabled')        
+        logging.info("Debut de l'ecoute du micro")
+        texteAudio = self.audio.ecouter()        
+        logging.info("Fin de l'ecoute du micro")
         self.validationRecherche(texteAudio)
         self.app.saisieDeTexte.configure(state='normal')
         self.app.audioActif = False
@@ -103,5 +108,7 @@ class GestionApplication:
             Entree:
             Sortie:
             Fonction: lance l'application
-        """
-        self.app.mainloop()
+        """        
+        logging.info("Lancement de l'application")
+        self.app.mainloop()        
+        logging.info("Fermeture de l'application")

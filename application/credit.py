@@ -19,7 +19,7 @@ class Credit(Tk):
             Fonction: initialisation des widgets present sur la page
         """
         self.label = Label(self,text = "Crédit :",justify = 'center',font = ("Arial", 24, "bold")).pack(side = "top",pady = 5)
-        self.sousLabel = Label(self,text = "Développeur : Gabriel Teigné, Axel Bonneau\nDesigner interface utilisateur: Gabriel Teigné, Axel Bonneau\nGraphiste : Axel Bonneau\nPour l'image : Didier\nA prêter sa voie : Didier\nMerci Didier !!!\nMerci aussi à Gabriel\net moi (Axel)",justify = 'left',font = ("Arial", 16,)).pack(pady = 5,side = LEFT)
+        self.sousLabel = Label(self,text = "Développeur : Gabriel Teigné, Axel Bonneau\nDesigner interface utilisateur: Gabriel Teigné, Axel Bonneau\nGraphiste : Axel Bonneau\nPour l'image : Didier\n",justify = 'left',font = ("Arial", 12),wraplength = 490).pack(pady = 50,side = TOP)
 
     def destroy(self,*args):
         """

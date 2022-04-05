@@ -9,6 +9,7 @@ from theme import Larousse
 from theme import Email
 from theme import Twitter
 from theme import Actualite
+from theme import Pays
 
 from gestion import rechercheTheme
 from erreur import erreur
@@ -27,7 +28,8 @@ class GestionTheme:
                       "mail":Email.Email(),
                       "twitter":Twitter.Twitter(),
                       "actualite": Actualite.Actualite(),
-                      "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau()}
+                      "pierrePapierCiseau":PierrePapierCiseau.PierrePapierCiseau(),
+                      "pays":Pays.Pays()}
 
         self.themesTrouves = []
 

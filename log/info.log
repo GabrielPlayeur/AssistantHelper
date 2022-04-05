@@ -1,0 +1,65 @@
+2022-04-05 09:34:14.733 INFO server - _serve_client: goodbye ('127.0.0.1', 50794)
+2022-04-05 09:34:14.734 INFO server - close: listener closed
+2022-04-05 09:34:14.734 INFO server - start: server has terminated
+2022-04-05 09:34:16.476 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 09:43:20.134 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 09:44:57.018 INFO server - _serve_client: goodbye ('127.0.0.1', 50995)
+2022-04-05 09:44:57.018 INFO server - close: listener closed
+2022-04-05 09:44:57.018 INFO server - start: server has terminated
+2022-04-05 09:44:59.226 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 09:45:03.902 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x0000029663A63988>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 09:45:57.307 INFO server - _serve_client: goodbye ('127.0.0.1', 51279)
+2022-04-05 09:45:57.308 INFO server - close: listener closed
+2022-04-05 09:45:57.308 INFO server - start: server has terminated
+2022-04-05 09:45:58.959 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 09:46:04.814 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x00000196F8FB3808>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 09:46:43.955 INFO server - _serve_client: goodbye ('127.0.0.1', 51307)
+2022-04-05 09:46:43.955 INFO server - close: listener closed
+2022-04-05 09:46:43.955 INFO server - start: server has terminated
+2022-04-05 09:46:45.668 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 09:46:51.823 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x0000025D5A7E26C8>, 'reconnaiseur': ['capital'], 'element': ['France'], 'connecteur': ['de']}]
+2022-04-05 09:46:59.118 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x0000025D5A7E26C8>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 09:47:01.663 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 09:47:03.952 INFO server - _serve_client: goodbye ('127.0.0.1', 51317)
+2022-04-05 09:47:03.953 INFO server - close: listener closed
+2022-04-05 09:47:03.953 INFO server - start: server has terminated
+2022-04-05 18:12:34.515 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:12:46.719 INFO gestionApplication - validationRecherche: [{'theme': <theme.Calculatrice.Calculatrice object at 0x0000020A7FBBFE80>, 'reconnaiseur': ['calcule'], 'element': ['5+5'], 'connecteur': ['calcule']}]
+2022-04-05 18:12:56.290 INFO gestionApplication - validationRecherche: []
+2022-04-05 18:13:06.759 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x0000020A7FBC70D0>, 'reconnaiseur': ['capital'], 'element': ['paris'], 'connecteur': ['capital']}]
+2022-04-05 18:13:18.186 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x0000020A7FBC70D0>, 'reconnaiseur': ['capital'], 'element': ['France'], 'connecteur': ['capital']}]
+2022-04-05 18:16:02.749 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 18:16:06.208 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:16:12.180 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x00000203E8745400>, 'reconnaiseur': ['capital'], 'element': ['la france', 'de la france', 'france'], 'connecteur': ['de', 'capital', 'la']}]
+2022-04-05 18:16:25.832 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:16:45.754 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:16:52.846 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x0000010FFFED6370>, 'reconnaiseur': ['capital'], 'element': ['la France'], 'connecteur': ['de']}]
+2022-04-05 18:17:07.457 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:17:12.773 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x00000264E34154F0>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 18:17:23.143 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x00000264E34154F0>, 'reconnaiseur': ['capital'], 'element': ['france'], 'connecteur': ['capital']}]
+2022-04-05 18:17:39.175 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x00000264E34154F0>, 'reconnaiseur': ['capital'], 'element': ['France'], 'connecteur': ['de']}]
+2022-04-05 18:17:47.739 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x00000264E34154F0>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 18:19:26.060 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 18:19:28.372 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:19:29.812 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x000002281A610EE0>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 18:19:50.561 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:19:55.013 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x000001DFAE2B62E0>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 18:19:57.179 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 18:20:40.707 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:20:47.787 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x000001E668E553A0>, 'reconnaiseur': ['capital'], 'element': [], 'connecteur': []}]
+2022-04-05 18:21:27.199 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 18:21:30.742 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:21:37.368 INFO gestionApplication - validationRecherche: [{'theme': <theme.Pays.Pays object at 0x000002B40E8C0E80>, 'reconnaiseur': ['capital'], 'element': ['France'], 'connecteur': ['capital']}]
+2022-04-05 18:21:47.721 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:21:53.461 INFO gestionApplication - validationRecherche: [{'theme': <theme.Calculatrice.Calculatrice object at 0x00000208888FE0D0>, 'reconnaiseur': ['calcule'], 'element': [], 'connecteur': []}]
+2022-04-05 18:24:04.995 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:24:40.021 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 18:24:42.167 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:24:55.727 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:25:15.357 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:25:33.445 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:25:48.501 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:26:14.766 INFO gestionApplication - run: Fermeture de l'application
+2022-04-05 18:26:16.889 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:26:30.277 INFO gestionApplication - run: Lancement de l'application
+2022-04-05 18:26:36.421 INFO gestionApplication - run: Fermeture de l'application
